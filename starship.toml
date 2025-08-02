@@ -1,0 +1,53 @@
+format = '''
+$time:$kubernetes$git_branch$jobs$directory
+$hostname$username$character'''
+
+palette = 'custom'
+
+add_newline = false
+
+[time]
+format = '[\[$time\]](blue)'
+time_format = '%Y-%m-%d-%H:%M:%S'
+disabled = false
+
+[hostname]
+ssh_only = true
+format = '[\[SSH:$hostname\]](bold red)'
+disabled = false
+
+[username]
+format = '[\[$user\] ](bold red)'
+show_always = false
+# Only show when root or when SSH
+detect_env_vars = ['SSH_CONNECTION']
+
+[kubernetes]
+format = '[\[$context@$namespace\]](green)'
+disabled = false
+
+[git_branch]
+format = '[\[$branch\]](yellow)'
+disabled = false
+
+[jobs]
+format = '[\[$number\]](red)'
+number_threshold = 1
+disabled = false
+
+[directory]
+format = '[$path](purple)'
+truncation_length = 0
+truncate_to_repo = false
+disabled = false
+
+[character]
+success_symbol = '[\$](green)'
+error_symbol = '[\$](red)'
+
+[palettes.custom]
+red = '9'
+green = '10'
+yellow = '11'
+blue = '12'
+purple = '13'
