@@ -1,0 +1,4 @@
+shift - insert: skhd -k "cmd -v"; pbpaste
+
+# Reload
+f5: skhd -k "cmd - r"

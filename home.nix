@@ -153,4 +153,10 @@
       };
     };
   };
+
+  services.skhd = lib.mkIf pkgs.stdenv.isDarwin {
+    enable = true;
+    package = pkgs.skhd;
+    config = ./skhdrc;
+  };
 }
