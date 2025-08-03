@@ -143,7 +143,7 @@
 
   programs.ssh = {
     enable = true;
-
+    includes = ["~/.ssh/config_local"];
     matchBlocks = {
       "*" = {
         user = "root";
