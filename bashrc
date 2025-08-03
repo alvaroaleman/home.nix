@@ -90,5 +90,7 @@ fi
 
 alias ls='ls --color=auto'
 
+alias brew=/opt/homebrew/bin/brew
+
 [[ -f $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]] && \
   source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
