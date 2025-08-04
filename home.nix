@@ -165,4 +165,11 @@
     package = null;
     userSettings = builtins.fromTOML (builtins.readFile ./aerospace.toml);
   };
+
+  home.file = lib.mkIf pkgs.stdenv.isDarwin {
+    ".config/sketchybar" = {
+      source = ./sketchybar;
+      recursive = true;
+    };
+  };
 }
