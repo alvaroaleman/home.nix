@@ -34,6 +34,7 @@
         gnugrep
         gnumake
         wakeonlan
+        nerd-fonts.hack
       ];
 
     homeDirectory =

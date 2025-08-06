@@ -8,6 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    darwin = {
+      url = "github:lnl7/nix-darwin/nix-darwin-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvim-plugin-gruvbox = {
       url = "github:ellisonleao/gruvbox.nvim/6d409ee8af4e84d2327b4b5856f843b97a85a567";
       flake = false;
@@ -18,6 +23,7 @@
   outputs = {
     nixpkgs,
     home-manager,
+    darwin,
     nvim-plugin-gruvbox,
     nix-search-cli,
     ...
@@ -26,15 +32,10 @@
     commonModuleArgs = {
       inherit nvim-plugin-gruvbox nix-search-cli;
     };
-  in {
-    # Export it
-    homeManagerModules.default = {
-      imports = [./home.nix];
-      _module.args = commonModuleArgs;
-    };
 
-    # Local darwin deployment target
-    homeConfigurations."alvaro@darwin" = home-manager.lib.homeManagerConfiguration {
+    userList = ["alvaro" "aaleman"];
+
+    mkHomeConfig = user: {
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
       };
@@ -48,5 +49,46 @@
         }
       ];
     };
+
+    homeConfigs = builtins.listToAttrs (
+      map (user: {
+        name = "${user}@darwin";
+        value = home-manager.lib.homeManagerConfiguration (mkHomeConfig user);
+      })
+      userList
+    );
+
+    mkDarwinConfig = user: {
+      system = "aarch64-darwin";
+      specialArgs = {inherit user;};
+      modules = [
+        ./darwin.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${user} = {
+            imports = [./home.nix];
+            _module.args = commonModuleArgs;
+          };
+        }
+      ];
+    };
+
+    darwinConfigs = builtins.listToAttrs (
+      map (user: {
+        name = "${user}@darwin";
+        value = darwin.lib.darwinSystem (mkDarwinConfig user);
+      })
+      userList
+    );
+  in {
+    homeManagerModules.default = {
+      imports = [./home.nix];
+      _module.args = commonModuleArgs;
+    };
+
+    homeConfigurations = homeConfigs;
+    darwinConfigurations = darwinConfigs;
   };
 }
