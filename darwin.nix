@@ -40,9 +40,11 @@
     ];
   };
 
+  programs.fish.enable = true;
+
   # This does not override the MacOS default shells,
   # just add to them.
-  environment.shells = [pkgs.bash];
+  environment.shells = [pkgs.bash pkgs.fish];
 
   users.users.${user} = {
     name = user;

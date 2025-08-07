@@ -53,6 +53,10 @@
     enable = true;
     bashrcExtra = builtins.readFile ./bashrc;
   };
+  programs.fish = {
+    enable = true;
+    shellInit = builtins.readFile ./fish_init.fish;
+  };
 
   programs.neovim = {
     enable = true;
