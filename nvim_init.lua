@@ -340,10 +340,13 @@ cmp.setup({
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Setup LSPs directly
-lspconfig.clangd.setup {
-	capabilities = capabilities,
-}
+local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer" }
+for _, server in ipairs(lsp_servers) do
+	lspconfig[server].setup {
+		capabilities = capabilities,
+	}
+end
+
 
 lspconfig.gopls.setup {
 	cmd = { 'gopls', "-remote=auto", "-logfile=/tmp/gopls.log", "-rpc.trace" },
@@ -364,14 +367,6 @@ lspconfig.gopls.setup {
 			},
 		},
 	},
-}
-
-lspconfig.pylsp.setup {
-	capabilities = capabilities,
-}
-
-lspconfig.terraformls.setup {
-	capabilities = capabilities,
 }
 
 lspconfig.lua_ls.setup {
