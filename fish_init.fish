@@ -5,6 +5,7 @@ ssh-add -l | grep -q id_rsa; or ssh-add $HOME/.ssh/id_rsa
 fish_add_path $HOME/.krew/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
+fish_add_path /opt/homebrew/bin
 
 set -x GOBIN $HOME/.local/bin
 
