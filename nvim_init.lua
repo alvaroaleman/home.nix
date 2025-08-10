@@ -494,24 +494,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = org_imports,
 })
 
--- Diagnostic signs
-local signs = {
-	Error = "⚠ ",
-	Warning = "⚠ ",
-	Warn = "⚠ ",
-	Hint = " ",
-	Info = " ",
-	Information = " "
-}
-
 vim.diagnostic.config({
 	signs = {
-		Error = { text = signs.Error, texthl = "DiagnosticSignError", numhl = "DiagnosticSignError" },
-		Warning = { text = signs.Warning, texthl = "DiagnosticSignWarning", numhl = "DiagnosticSignWarning" },
-		Warn = { text = signs.Warn, texthl = "DiagnosticSignWarn", numhl = "DiagnosticSignWarn" },
-		Hint = { text = signs.Hint, texthl = "DiagnosticSignHint", numhl = "DiagnosticSignHint" },
-		Info = { text = signs.Info, texthl = "DiagnosticSignInfo", numhl = "DiagnosticSignInfo" },
-		Information = { text = signs.Information, texthl = "DiagnosticSignInformation", numhl = "DiagnosticSignInformation" },
+		text = {
+			[vim.diagnostic.severity.ERROR] = "⚠",
+			[vim.diagnostic.severity.WARN] = "⚠",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
 	}
 })
 require("trouble").setup()
