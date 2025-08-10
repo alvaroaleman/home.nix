@@ -404,7 +404,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local opts = { buffer = ev.buf }
 		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+		vim.keymap.set('n', 'h', vim.lsp.buf.hover, opts)
+		vim.keymap.set('n', 'ca', vim.lsp.buf.code_action, opts)
 		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
@@ -513,6 +514,19 @@ vim.diagnostic.config({
 		Information = { text = signs.Information, texthl = "DiagnosticSignInformation", numhl = "DiagnosticSignInformation" },
 	}
 })
+require("trouble").setup()
+vim.keymap.set("n", "ld", function()
+	require("trouble").toggle({
+		mode = "diagnostics",
+		filter = {
+			buf = 0,
+			range = {
+				start = { vim.fn.line("."), 0 },
+				["end"] = { vim.fn.line("."), -1 }
+			}
+		}
+	})
+end, { desc = "Line Diagnostics (Trouble)" })
 
 -- Custom LSP rename function
 function LspRename()

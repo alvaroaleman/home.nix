@@ -97,6 +97,8 @@
           statuscol-nvim
           fidget-nvim
           bigfile-nvim
+          trouble-nvim
+          nvim-web-devicons
         ]
         ++ [
           (buildPlugin "gruvbox.nvim" nvim-plugin-gruvbox)
