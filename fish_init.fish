@@ -5,7 +5,8 @@ ssh-add -l | grep -q id_rsa; or ssh-add $HOME/.ssh/id_rsa
 fish_add_path $HOME/.krew/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
-fish_add_path /opt/homebrew/bin
+
+test -d /opt/homebrew/bin && fish_add_path /opt/homebrew/bin
 
 set -x GOBIN $HOME/.local/bin
 
@@ -16,8 +17,9 @@ else
 end
 
 alias k=kubectl
-alias ls='ls -G'
+alias ls='ls -G --color=auto'
 alias ll='ls -lh'
+alias l=ll
 alias s=systemctl
 alias vim=nvim
 alias g=git
