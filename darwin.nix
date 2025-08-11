@@ -34,6 +34,7 @@
     casks = [
       "nikitabobko/tap/aerospace"
       "ghostty"
+      "caffeine"
     ];
     brews = [
       "FelixKratz/formulae/sketchybar"

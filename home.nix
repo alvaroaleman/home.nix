@@ -24,6 +24,7 @@
         kubevirt
         virt-viewer
         nix-search-cli.packages.${system}.default
+        fd
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
