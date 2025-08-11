@@ -390,6 +390,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- Global LSP mappings
+vim.g.mapleader = " "
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
@@ -504,9 +505,10 @@ vim.diagnostic.config({
 		},
 	}
 })
-require("trouble").setup()
-vim.keymap.set("n", "ld", function()
-	require("trouble").toggle({
+trouble = require("trouble")
+trouble.setup()
+vim.keymap.set("n", "<leader>t", function()
+	trouble.toggle({
 		mode = "diagnostics",
 		filter = {
 			buf = 0,
@@ -517,6 +519,14 @@ vim.keymap.set("n", "ld", function()
 		}
 	})
 end, { desc = "Line Diagnostics (Trouble)" })
+vim.api.nvim_create_autocmd("CursorMoved", {
+	callback = function()
+		-- Only update if trouble is open and in line diagnostic mode
+		if trouble.is_open() then
+			trouble.refresh()
+		end
+	end,
+})
 
 -- Custom LSP rename function
 function LspRename()
