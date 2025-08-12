@@ -26,6 +26,7 @@ alias brew=/opt/homebrew/bin/brew
 
 function setup_project_aliases
     set -l configs \
+        ~/git/go/src/k8s.io/ 1 \
         ~/git/go/src/sigs.k8s.io 1 \
         ~/git/go/src/github.com 2 \
         ~/git/private 1
