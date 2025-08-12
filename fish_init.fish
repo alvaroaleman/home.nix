@@ -1,5 +1,4 @@
 # vim: ft=fish
-
 ssh-add -l | grep -q id_rsa; or ssh-add $HOME/.ssh/id_rsa
 
 fish_add_path $HOME/.krew/bin
@@ -23,8 +22,27 @@ alias l=ll
 alias s=systemctl
 alias vim=nvim
 alias g=git
-alias controller-runtime='cd $HOME/git/go/src/sigs.k8s.io/controller-runtime'
 alias brew=/opt/homebrew/bin/brew
+
+function setup_project_aliases
+    set -l configs \
+        ~/git/go/src/sigs.k8s.io 1 \
+        ~/git/go/src/github.com 2 \
+        ~/git/private 1
+
+    for i in (seq 1 2 (count $configs))
+        set base_dir $configs[$i]
+        set depth $configs[(math $i + 1)]
+
+        for project_path in (find $base_dir -mindepth $depth -maxdepth $depth -type d)
+            set project_name (basename $project_path)
+            # We need it as a command
+            if test "$project_name" = "kube-switch"; continue; end
+            alias $project_name "cd $project_path"
+        end
+    end
+end
+setup_project_aliases
 
 set -x SYSTEMD_PAGER
 set -x CGO_ENABLED 0
@@ -43,7 +61,7 @@ end
 
 if command -q cargo
     command -q kube-switch; or cargo install --git https://github.com/alvaroaleman/kube-switch.git
-		kube-switch completion fish|source -
+    kube-switch completion fish|source -
 end
 
 starship init fish | source
