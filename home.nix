@@ -36,6 +36,7 @@
         gnumake
         wakeonlan
         nerd-fonts.hack
+        azure-cli
       ];
 
     homeDirectory =
