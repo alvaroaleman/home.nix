@@ -606,3 +606,9 @@ require('lspconfig').nixd.setup({
 		}
 	}
 })
+
+vim.filetype.add({
+	extension = {
+		tf = 'terraform',
+	}
+})
