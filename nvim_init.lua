@@ -113,7 +113,6 @@ require("lsp_signature").setup({
 
 -- Treesitter context
 require("treesitter-context").setup({ separator = "-" })
-vim.cmd('TSContextEnable')
 
 -- UFO (folding) setup
 vim.o.foldcolumn = '1'
