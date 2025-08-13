@@ -38,8 +38,11 @@ function setup_project_aliases
 
         for project_path in (find $base_dir -mindepth $depth -maxdepth $depth -type d)
             set project_name (basename $project_path)
-            # We need it as a command
-            if test "$project_name" = "kube-switch"; continue; end
+
+            # Don't override commands
+            if type -q $project_name
+                continue
+            end
             alias $project_name "cd $project_path"
         end
     end
