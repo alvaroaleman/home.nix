@@ -38,7 +38,7 @@
         nerd-fonts.hack
         azure-cli
         awscli2
-        terraform
+        tenv
       ];
 
     homeDirectory =
