@@ -41,7 +41,7 @@
       };
       modules = [
         {
-          home.username = "alvaro";
+          home.username = user;
         }
         ./home.nix
         {
