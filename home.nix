@@ -39,6 +39,7 @@
         azure-cli
         awscli2
         tenv
+        watch
       ];
 
     homeDirectory =
