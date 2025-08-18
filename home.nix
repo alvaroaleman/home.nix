@@ -114,7 +114,7 @@
       # Language servers
       clang-tools # clangd
       gopls
-      python311Packages.python-lsp-server # pylsp
+      python313Packages.python-lsp-server # pylsp
       terraform-ls # terraformls
       lua-language-server # lua_ls
       nixd # nixlsp
