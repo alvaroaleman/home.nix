@@ -84,3 +84,5 @@ test -f "$HOME/.cargo/env.fish"; and source "$HOME/.cargo/env.fish"
 set -U fish_greeting ""
 
 alias unset 'set -e argv[1]'
+
+alias assume='source /Users/aaleman/.nix-profile/share/assume.fish'

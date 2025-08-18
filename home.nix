@@ -40,6 +40,7 @@
         awscli2
         tenv
         watch
+        granted
       ];
 
     homeDirectory =
