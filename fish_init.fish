@@ -1,5 +1,8 @@
 # vim: ft=fish
-ssh-add -l | grep -q id_rsa; or ssh-add $HOME/.ssh/id_rsa
+
+if test -f $HOME/.ssh/id_rsa
+  ssh-add -l | grep -q id_rsa; or ssh-add $HOME/.ssh/id_rsa
+end
 
 fish_add_path $HOME/.krew/bin
 fish_add_path $HOME/.local/bin
@@ -35,6 +38,8 @@ function setup_project_aliases
     for i in (seq 1 2 (count $configs))
         set base_dir $configs[$i]
         set depth $configs[(math $i + 1)]
+
+        if ! test -d $base_dir; continue; end
 
         for project_path in (find $base_dir -mindepth $depth -maxdepth $depth -type d)
             set project_name (basename $project_path)
