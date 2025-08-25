@@ -30,6 +30,7 @@
     taps = [
       "nikitabobko/tap"
       "FelixKratz/formulae"
+      "int128/kubelogin"
     ];
     casks = [
       "nikitabobko/tap/aerospace"
@@ -38,6 +39,7 @@
     ];
     brews = [
       "FelixKratz/formulae/sketchybar"
+      "int128/kubelogin/oidc-kubelogin"
     ];
   };
 
