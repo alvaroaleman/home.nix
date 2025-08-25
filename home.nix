@@ -62,6 +62,12 @@
   programs.fish = {
     enable = true;
     shellInit = builtins.readFile ./fish_init.fish;
+    plugins = [
+      {
+        name = "bass";
+        src = pkgs.fishPlugins.bass.src;
+      }
+    ];
   };
 
   programs.neovim = {
