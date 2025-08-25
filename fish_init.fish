@@ -86,3 +86,5 @@ set -U fish_greeting ""
 alias unset 'set -e argv[1]'
 
 alias assume='source /Users/aaleman/.nix-profile/share/assume.fish'
+
+if test -f ~/.bashrc_local; bass source ~/.bashrc_local; end
