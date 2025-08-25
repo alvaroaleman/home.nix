@@ -11,3 +11,7 @@ darwin:
 		--extra-experimental-features nix-command \
 		--extra-experimental-features flakes \
 		-- switch --flake .#$(USER)@darwin; \
+
+.PHONY: diff
+diff:
+	@./hack/diff.sh
