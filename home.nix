@@ -41,6 +41,7 @@
         tenv
         watch
         granted
+        google-cloud-sdk
       ];
 
     homeDirectory =
