@@ -25,6 +25,7 @@
         virt-viewer
         nix-search-cli.packages.${system}.default
         fd
+        marksman
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only

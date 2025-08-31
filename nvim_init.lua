@@ -339,7 +339,7 @@ cmp.setup({
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer" }
+local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer", "marksman" }
 for _, server in ipairs(lsp_servers) do
 	lspconfig[server].setup {
 		capabilities = capabilities,
