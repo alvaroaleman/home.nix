@@ -142,6 +142,10 @@
       co = "checkout";
     };
     extraConfig = {
+      diff = {
+        colorMoved = "default";
+        algorithm = "histogram";
+      };
       push = {
         autoSetupRemote = true;
       };
