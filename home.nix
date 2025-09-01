@@ -74,40 +74,34 @@
   programs.neovim = {
     enable = true;
 
-    plugins = let
-      buildPlugin = name: src:
-        pkgs.vimUtils.buildVimPlugin {
-          inherit name src;
-        };
-    in
-      with pkgs.vimPlugins; [
-        blink-cmp
-        blink-cmp-copilot
-        nvim-lspconfig
-        nvim-treesitter
-        gitsigns-nvim
-        nvim-autopairs
-        indent-blankline-nvim
-        vim-illuminate
-        lspkind-nvim
-        nvim-web-devicons
-        copilot-lua
-        nvim-ufo
-        rainbow-delimiters-nvim
-        vimade
-        lsp_signature-nvim
-        nvim-treesitter-context
-        vim-airline
-        vim-airline-themes
-        vim-gh-line
-        promise-async
-        statuscol-nvim
-        fidget-nvim
-        bigfile-nvim
-        trouble-nvim
-        nvim-web-devicons
-        gruvbox-nvim
-      ];
+    plugins = with pkgs.vimPlugins; [
+      blink-cmp
+      blink-cmp-copilot
+      nvim-lspconfig
+      nvim-treesitter
+      gitsigns-nvim
+      nvim-autopairs
+      indent-blankline-nvim
+      vim-illuminate
+      lspkind-nvim
+      nvim-web-devicons
+      copilot-lua
+      nvim-ufo
+      rainbow-delimiters-nvim
+      vimade
+      lsp_signature-nvim
+      nvim-treesitter-context
+      vim-airline
+      vim-airline-themes
+      vim-gh-line
+      promise-async
+      statuscol-nvim
+      fidget-nvim
+      bigfile-nvim
+      trouble-nvim
+      nvim-web-devicons
+      gruvbox-nvim
+    ];
 
     extraPackages = with pkgs; [
       # Language servers
