@@ -348,7 +348,7 @@ require('blink.cmp').setup({
 local lspconfig = require('lspconfig')
 capabilities = require('blink.cmp').get_lsp_capabilities()
 
-local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer", "marksman", "copilot_ls" }
+local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer", "marksman" }
 for _, server in ipairs(lsp_servers) do
 	lspconfig[server].setup {
 		capabilities = capabilities,
