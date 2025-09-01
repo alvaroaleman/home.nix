@@ -137,30 +137,12 @@
         "type": "indirect"
       }
     },
-    "nvim-plugin-gruvbox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1692217476,
-        "narHash": "sha256-GMjescbK1FexeKBg2U6jvT7LlJq3cqHS3q3kcRg9ZpY=",
-        "owner": "ellisonleao",
-        "repo": "gruvbox.nvim",
-        "rev": "6d409ee8af4e84d2327b4b5856f843b97a85a567",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ellisonleao",
-        "repo": "gruvbox.nvim",
-        "rev": "6d409ee8af4e84d2327b4b5856f843b97a85a567",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "darwin": "darwin",
         "home-manager": "home-manager",
         "nix-search-cli": "nix-search-cli",
-        "nixpkgs": "nixpkgs_2",
-        "nvim-plugin-gruvbox": "nvim-plugin-gruvbox"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

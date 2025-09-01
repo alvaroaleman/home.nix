@@ -273,7 +273,6 @@ require('blink.cmp').setup({
 	},
 
 	appearance = {
-		use_nvim_cmp_as_default = true,
 		nerd_font_variant = 'mono',
 
 		-- blink.cmp doesn't expose the default, so we have to
@@ -434,37 +433,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Gruvbox theme setup
-local config = require("gruvbox").config
-local colors = require("gruvbox.palette").get_base_colors(vim.o.background, config.contrast)
 require("gruvbox").setup({
-	overrides = {
-		SignColumn = {
-			bg = colors.bg0,
-		},
-		LineNr = { fg = colors.bg4, bg = colors.bg0 },
-		FoldColumn = config.transparent_mode and { fg = colors.gray, bg = nil } or
-		    { fg = colors.gray, bg = colors.bg0 },
-		GitSignsAdd = config.transparent_mode and { fg = colors.green, reverse = config.invert_signs }
-		    or { fg = colors.green, bg = colors.bg0, reverse = config.invert_signs },
-		GitSignsChange = config.transparent_mode and { fg = colors.aqua, reverse = config.invert_signs }
-		    or { fg = colors.aqua, bg = colors.bg0, reverse = config.invert_signs },
-		GitSignsDelete = config.transparent_mode and { fg = colors.red, reverse = config.invert_signs }
-		    or { fg = colors.red, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxRedSign = config.transparent_mode and { fg = colors.red, reverse = config.invert_signs }
-		    or { fg = colors.red, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxGreenSign = config.transparent_mode and { fg = colors.green, reverse = config.invert_signs }
-		    or { fg = colors.green, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxYellowSign = config.transparent_mode and { fg = colors.yellow, reverse = config.invert_signs }
-		    or { fg = colors.yellow, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxBlueSign = config.transparent_mode and { fg = colors.blue, reverse = config.invert_signs }
-		    or { fg = colors.blue, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxPurpleSign = config.transparent_mode and { fg = colors.purple, reverse = config.invert_signs }
-		    or { fg = colors.purple, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxAquaSign = config.transparent_mode and { fg = colors.aqua, reverse = config.invert_signs }
-		    or { fg = colors.aqua, bg = colors.bg0, reverse = config.invert_signs },
-		GruvboxOrangeSign = config.transparent_mode and { fg = colors.orange, reverse = config.invert_signs }
-		    or { fg = colors.orange, bg = colors.bg0, reverse = config.invert_signs },
-	},
 	italic = {
 		strings = false,
 		comments = false,
@@ -474,6 +443,29 @@ require("gruvbox").setup({
 })
 vim.o.background = "dark"
 vim.cmd("colorscheme gruvbox")
+
+local colors = require("gruvbox").palette
+local highlights = {
+	-- Sign, line number and fold should have the same bg color
+	SignColumn = { bg = colors.bg0 },
+	LineNr = { fg = colors.dark4 or colors.gray, bg = colors.bg0 },
+	FoldColumn = { fg = colors.gray, bg = colors.bg0 },
+	-- Git signs need to keep their foreground colors visible
+	GitSignsAdd = { fg = colors.bright_green, bg = colors.bg0 },
+	GitSignsChange = { fg = colors.bright_aqua, bg = colors.bg0 },
+	GitSignsDelete = { fg = colors.bright_red, bg = colors.bg0 },
+	-- Gruvbox signs also need bright colors
+	GruvboxRedSign = { fg = colors.bright_red, bg = colors.bg0 },
+	GruvboxGreenSign = { fg = colors.bright_green, bg = colors.bg0 },
+	GruvboxYellowSign = { fg = colors.bright_yellow, bg = colors.bg0 },
+	GruvboxBlueSign = { fg = colors.bright_blue, bg = colors.bg0 },
+	GruvboxPurpleSign = { fg = colors.bright_purple, bg = colors.bg0 },
+	GruvboxAquaSign = { fg = colors.bright_aqua, bg = colors.bg0 },
+	GruvboxOrangeSign = { fg = colors.bright_orange, bg = colors.bg0 },
+}
+for group, settings in pairs(highlights) do
+	vim.api.nvim_set_hl(0, group, settings)
+end
 
 -- Autocommands
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format({ async = false, timeout_ms = 2000 })]]
