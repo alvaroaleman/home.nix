@@ -84,6 +84,7 @@
       with pkgs.vimPlugins;
         [
           blink-cmp
+          blink-cmp-copilot
           nvim-lspconfig
           nvim-treesitter
           gitsigns-nvim
