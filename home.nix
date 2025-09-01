@@ -83,12 +83,7 @@
     in
       with pkgs.vimPlugins;
         [
-          nvim-cmp
-          cmp-nvim-lsp
-          cmp-buffer
-          cmp-path
-          cmp_luasnip
-          luasnip
+          blink-cmp
           nvim-lspconfig
           nvim-treesitter
           gitsigns-nvim
@@ -98,7 +93,6 @@
           lspkind-nvim
           nvim-web-devicons
           copilot-lua
-          copilot-cmp
           nvim-ufo
           rainbow-delimiters-nvim
           vimade

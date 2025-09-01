@@ -149,10 +149,18 @@ require("fidget").setup {}
 
 -- Copilot setup
 require("copilot").setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
+	suggestion = {
+		enabled = true,
+		auto_trigger = true,
+		debounce = 75,
+		keymap = {
+			accept = "<Right>",
+			next = "<M-]>",
+			prev = "<M-[>",
+			dismiss = "<C-]>",
+		},
+	},
 })
-require("copilot_cmp").setup()
 
 -- Bigfile setup
 require("bigfile").setup({
@@ -265,81 +273,39 @@ require('vimade').setup({
 	},
 })
 
--- CMP setup
-vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-local cmp = require("cmp")
-local defaults = require("cmp.config.default")()
-local luasnip = require('luasnip')
-local lspkind = require('lspkind')
+require('blink.cmp').setup({
+	keymap = {
+		preset = 'default',
+		['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+		['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+		['<CR>'] = { 'accept', 'fallback' },
+	},
 
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
+	appearance = {
+		use_nvim_cmp_as_default = true, -- Makes it look like nvim-cmp
+		nerd_font_variant = 'mono',
 	},
-	mapping = cmp.mapping.preset.insert({
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+
+	completion = {
+		documentation = {
+			auto_show = true,
 		},
-		['<Tab>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
-		['<S-Tab>'] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { 'i', 's' }),
-	}),
-	formatting = {
-		format = lspkind.cmp_format({
-			mode = 'symbol_text',
-			maxwidth = 50,
-			before = function(_, vim_item)
-				return vim_item
-			end
-		})
-	},
-	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-		{ name = 'nvim_lua' },
-		{ name = 'nvim_lsp_signature_help' },
-		{ name = 'path',                   option = { trailing_slash = true } },
-		{
-			name = 'buffer',
-			max_item_count = 3,
-			keyword_length = 2,
-		},
-		{ name = "copilot", group_index = 2 },
-	}),
-	experimental = {
-		ghost_text = {
-			hl_group = "CmpGhostText",
+		ghost_text = { enabled = true },
+		menu = {
+			draw = {
+				columns = {
+					{ "label",     "label_description", gap = 1 },
+					{ "kind_icon", "kind",              gap = 1 }
+				}
+			}
 		},
 	},
-	sorting = defaults.sorting,
 })
 
--- LSP configuration (no Mason setup needed)
 local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities = require('blink.cmp').get_lsp_capabilities()
 
-local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer", "marksman" }
+local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer", "marksman", "copilot_ls" }
 for _, server in ipairs(lsp_servers) do
 	lspconfig[server].setup {
 		capabilities = capabilities,
