@@ -101,6 +101,7 @@
       trouble-nvim
       nvim-web-devicons
       gruvbox-nvim
+      vim-wordmotion
     ];
 
     extraPackages = with pkgs; [
