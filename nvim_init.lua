@@ -270,19 +270,6 @@ require('blink.cmp').setup({
 		['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
 		['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
 		['<CR>'] = { 'accept', 'fallback' },
-		['<Esc>'] = {
-			function(cmp)
-				if cmp.is_visible() then
-					cmp.hide()
-				else
-					vim.api.nvim_feedkeys(
-						vim.api.nvim_replace_termcodes('<Esc>', true, false, true),
-						'n',
-						false
-					)
-				end
-			end
-		}
 	},
 
 	appearance = {
