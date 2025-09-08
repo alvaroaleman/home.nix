@@ -90,3 +90,7 @@ alias assume='source /Users/aaleman/.nix-profile/share/assume.fish'
 if test -f ~/.bashrc_local; bass source ~/.bashrc_local; end
 
 alias then='true;'
+
+function nix-shell
+    command nix-shell $argv --command fish
+end
