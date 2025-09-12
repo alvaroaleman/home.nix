@@ -25,6 +25,7 @@
         nix-search-cli.packages.${system}.default
         fd
         marksman
+        skopeo
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
