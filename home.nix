@@ -42,6 +42,21 @@
         watch
         granted
         google-cloud-sdk
+
+        (stdenv.mkDerivation {
+          pname = "kubectl-slice";
+          version = "v1.4.2";
+          src = fetchurl {
+            url = "https://github.com/patrickdappollonio/kubectl-slice/releases/download/v1.4.2/kubectl-slice_darwin_arm64.tar.gz";
+            # Retrieved through `nix-prefetch-url $url`
+            sha256 = "0gh3f7isq26jzd7wfgck63yi1jhrzmjqi2ypaa9mn0ascfwgvns6";
+          };
+          dontUnpack = false;
+          sourceRoot = ".";
+          installPhase = ''
+            install -Dm755 kubectl-slice $out/bin/kubectl-slice
+          '';
+        })
       ];
 
     homeDirectory =
