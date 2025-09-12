@@ -152,6 +152,10 @@
       s = "status";
       co = "checkout";
     };
+    ignores = [
+      "temp"
+      "**/.claude/settings.local.json"
+    ];
     extraConfig = {
       diff = {
         colorMoved = "default";
