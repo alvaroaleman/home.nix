@@ -129,6 +129,7 @@
       lua-language-server # lua_ls
       nixd # nixlsp
       alejandra
+      starpls
 
       # Additional tools
       tree-sitter
