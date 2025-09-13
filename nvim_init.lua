@@ -273,6 +273,12 @@ require('blink.cmp').setup({
 		['<BS>'] = { 'hide', 'fallback' },
 	},
 
+	cmdline = {
+		keymap = {
+			preset = 'default',
+		},
+	},
+
 	appearance = {
 		nerd_font_variant = 'mono',
 
