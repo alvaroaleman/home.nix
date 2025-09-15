@@ -43,6 +43,10 @@
         watch
         granted
         google-cloud-sdk
+        bazelisk
+        (pkgs.writeShellScriptBin "bazel" ''
+          exec ${pkgs.bazelisk}/bin/bazelisk "$@"
+        '')
 
         (stdenv.mkDerivation {
           pname = "kubectl-slice";
