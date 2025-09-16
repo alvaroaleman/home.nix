@@ -21,7 +21,6 @@
         goperf # contains benchstat
         claude-code
         kubevirt
-        virt-viewer
         nix-search-cli.packages.${system}.default
         fd
         marksman
@@ -44,6 +43,7 @@
         granted
         google-cloud-sdk
         bazelisk
+        virt-viewer
         (pkgs.writeShellScriptBin "bazel" ''
           exec ${pkgs.bazelisk}/bin/bazelisk "$@"
         '')
@@ -146,7 +146,7 @@
     enable = true;
     package = null;
     enableBashIntegration = true;
-    settings = import ./ghostty_config.nix { inherit pkgs; };
+    settings = import ./ghostty_config.nix {inherit pkgs;};
   };
 
   programs.git = {
