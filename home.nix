@@ -146,7 +146,7 @@
     enable = true;
     package = null;
     enableBashIntegration = true;
-    settings = import ./ghostty_config.nix;
+    settings = import ./ghostty_config.nix { inherit pkgs; };
   };
 
   programs.git = {

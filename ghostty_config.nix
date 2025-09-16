@@ -1,9 +1,11 @@
+{ pkgs }:
 {
   copy-on-select = "clipboard";
   window-decoration = false;
   font-size = 18;
   font-thicken = true;
   font-feature = "-calt";
+  command = "${pkgs.lib.getExe pkgs.fish}";
 
   window-colorspace = "display-p3";
 
@@ -35,4 +37,5 @@
   ];
 
   keybind = "shift+enter=text:\\n";
+
 }
