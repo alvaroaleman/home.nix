@@ -88,6 +88,10 @@
         name = "bass";
         src = pkgs.fishPlugins.bass.src;
       }
+      {
+        name = "bang-bang";
+        src = pkgs.fishPlugins.bang-bang.src;
+      }
     ];
   };
 
