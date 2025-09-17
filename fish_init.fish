@@ -94,3 +94,8 @@ alias then='true;'
 function nix-shell
     command nix-shell $argv --command fish
 end
+
+function __fish_complete_aws
+    env COMP_LINE=(commandline -pc) aws_completer | tr -d ' '
+end
+complete -c aws -f -a "(__fish_complete_aws)"
