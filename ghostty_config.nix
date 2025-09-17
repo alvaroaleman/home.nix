@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{pkgs}: {
   copy-on-select = "clipboard";
   window-decoration = false;
   font-size = 18;
@@ -36,6 +35,8 @@
     "15=#b5bfe2"
   ];
 
-  keybind = "shift+enter=text:\\n";
-
+  keybind = [
+    "shift+enter=text:\\n"
+    "opt+backspace=text:\\x17"
+  ];
 }
