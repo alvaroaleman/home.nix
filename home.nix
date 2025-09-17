@@ -92,6 +92,10 @@
         name = "bang-bang";
         src = pkgs.fishPlugins.bang-bang.src;
       }
+      {
+        name = "autopair";
+        src = pkgs.fishPlugins.autopair.src;
+      }
     ];
   };
 
