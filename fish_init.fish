@@ -14,7 +14,10 @@ test -d /opt/homebrew/bin && fish_add_path /opt/homebrew/bin
 set -x GOBIN $HOME/.local/bin
 
 if set -q SSH_CONNECTION
-    alias c='printf "\033]52;c;$(base64 -w0)\033\\"'
+    function c
+      cat | base64 -w0 | read -z encoded
+      printf "\033]52;c;%s\033\\" $encoded
+    end
 else
     alias c='pbcopy'
 end
