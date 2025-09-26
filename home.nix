@@ -25,6 +25,7 @@
         fd
         marksman
         skopeo
+        kustomize
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
