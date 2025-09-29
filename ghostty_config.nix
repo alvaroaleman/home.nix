@@ -38,5 +38,8 @@
   keybind = [
     "shift+enter=text:\\n"
     "opt+backspace=text:\\x17"
+    "ctrl+v=paste_from_clipboard"
   ];
+
+  app-notifications = "false";
 }

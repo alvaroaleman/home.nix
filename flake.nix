@@ -8,81 +8,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
   };
   outputs = {
     nixpkgs,
     home-manager,
-    darwin,
     nix-search-cli,
     ...
-  }: let
-    # Common module args for all configurations
-    commonModuleArgs = {
-      inherit nix-search-cli;
-    };
-
-    userList = ["alvaro" "aaleman"];
-
-    mkHomeConfig = user: {
-      pkgs = import nixpkgs {
-        system = "aarch64-darwin";
-      };
+  }: {
+    nixosConfigurations.x1c = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
       modules = [
-        {
-          home.username = user;
-        }
-        ./home.nix
-        {
-          _module.args = commonModuleArgs;
-        }
-      ];
-    };
-
-    homeConfigs = builtins.listToAttrs (
-      map (user: {
-        name = "${user}@darwin";
-        value = home-manager.lib.homeManagerConfiguration (mkHomeConfig user);
-      })
-      userList
-    );
-
-    mkDarwinConfig = user: {
-      system = "aarch64-darwin";
-      specialArgs = {inherit user;};
-      modules = [
-        ./darwin.nix
-        home-manager.darwinModules.home-manager
+        ./x1c-configuration.nix
+        home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.${user} = {
-            imports = [./home.nix];
-            _module.args = commonModuleArgs;
-          };
+          home-manager.users.alvaro = import ./home.nix;
+          home-manager.extraSpecialArgs = { inherit nix-search-cli; };
         }
       ];
     };
-
-    darwinConfigs = builtins.listToAttrs (
-      map (user: {
-        name = "${user}@darwin";
-        value = darwin.lib.darwinSystem (mkDarwinConfig user);
-      })
-      userList
-    );
-  in {
-    homeManagerModules.default = {
-      imports = [./home.nix];
-      _module.args = commonModuleArgs;
-    };
-
-    homeConfigurations = homeConfigs;
-    darwinConfigurations = darwinConfigs;
   };
 }
