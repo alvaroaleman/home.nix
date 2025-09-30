@@ -48,6 +48,11 @@
         wakeonlan
         python314
         signal-desktop
+        file
+        networkmanagerapplet
+        blueman
+        pavucontrol
+        nerd-fonts.hack
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -57,7 +62,6 @@
         gnused
         gnugrep
         gnumake
-        nerd-fonts.hack
         tenv
         watch
         granted
@@ -214,6 +218,82 @@
         };
       };
     };
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      terminal = "${pkgs.ghostty}/bin/ghostty";
+      modifier = "Mod1";
+      bars = [];
+      output."*".bg = "${config.home.homeDirectory}/.local/share/backgrounds/amber-l.png fill";
+    };
+    checkConfig = false;
+  };
+
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+    settings = {
+      mainBar = {
+        height = 33;
+        modules-left = ["sway/workspaces"];
+        modules-right = ["network" "bluetooth" "pulseaudio" "battery" "clock"];
+
+        network = {
+          format-wifi = "{icon}";
+          format-disconnected = "󰖪";
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          tooltip-format = "{essid} ({signalStrength}%)";
+          on-click = "nm-connection-editor";
+        };
+
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          format-off = "󰂲";
+          on-click = "blueman-manager";
+        };
+
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-muted = "󰖁";
+          format-icons = {
+            default = ["󰕿" "󰖀" "󰕾"];
+          };
+          on-click = "pavucontrol";
+        };
+
+        battery = {
+          format = "{icon} {capacity}%";
+          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          format-charging = "󰂄 {capacity}%";
+        };
+
+        clock = {
+          format = "{:%H:%M}";
+          tooltip-format = "{:%Y-%m-%d}";
+        };
+      };
+    };
+
+    style = ''
+         * {
+           font-family: "sans-serif";
+           font-size: 16px;
+      font-weight: bold;
+         }
+
+         window#waybar {
+           background-color: #1e1e1e;
+           color: #ffffff;
+         }
+
+         #network, #bluetooth, #pulseaudio, #battery, #clock {
+           padding: 0 10px;
+           color: #ffffff;
+         }
+    '';
   };
 
   services.skhd = lib.mkIf pkgs.stdenv.isDarwin {

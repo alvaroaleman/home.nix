@@ -94,6 +94,11 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
