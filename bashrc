@@ -13,7 +13,7 @@ export GOBIN="${HOME}/.local/bin"
 if [ -n "$SSH_CONNECTION" ]; then
   alias c='printf "\033]52;c;$(base64 -w0)\033\\"'
 else
-  alias c='pbcopy'
+  alias c='wl-copy'
 fi
 
 alias k=kubectl

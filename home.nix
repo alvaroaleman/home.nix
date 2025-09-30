@@ -39,6 +39,7 @@
             '';
         }))
         zoom-us
+        wl-clipboard
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only

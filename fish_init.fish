@@ -19,7 +19,7 @@ if set -q SSH_CONNECTION
       printf "\033]52;c;%s\033\\" $encoded
     end
 else
-    alias c='pbcopy'
+    alias c='wl-copy'
 end
 
 alias k=kubectl
