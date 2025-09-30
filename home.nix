@@ -38,6 +38,7 @@
                 --replace "Exec=slack" "Exec=env GDK_BACKEND=x11 slack"
             '';
         }))
+        zoom-us
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
