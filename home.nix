@@ -40,6 +40,7 @@
         }))
         zoom-us
         wl-clipboard
+        zig
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
