@@ -41,6 +41,13 @@
         zoom-us
         wl-clipboard
         zig
+        azure-cli
+        awscli2
+        google-cloud-sdk
+        bazelisk
+        wakeonlan
+        python314
+        signal-desktop
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -50,15 +57,10 @@
         gnused
         gnugrep
         gnumake
-        wakeonlan
         nerd-fonts.hack
-        azure-cli
-        awscli2
         tenv
         watch
         granted
-        google-cloud-sdk
-        bazelisk
         virt-viewer
         (pkgs.writeShellScriptBin "bazel" ''
           exec ${pkgs.bazelisk}/bin/bazelisk "$@"
