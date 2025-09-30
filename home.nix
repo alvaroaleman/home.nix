@@ -28,8 +28,16 @@
         kustomize
         ghostty
         gnumake
-        gnomeExtensions.workspace-indicator
         google-chrome
+        devilspie2
+        (pkgs.slack.overrideAttrs (old: {
+          installPhase =
+            old.installPhase
+            + ''
+              substituteInPlace $out/share/applications/slack.desktop \
+                --replace "Exec=slack" "Exec=env GDK_BACKEND=x11 slack"
+            '';
+        }))
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -215,10 +223,17 @@
     userSettings = builtins.fromTOML (builtins.readFile ./aerospace.toml);
   };
 
-  home.file = lib.mkIf pkgs.stdenv.isDarwin {
-    ".config/sketchybar" = {
-      source = ./sketchybar;
-      recursive = true;
+  home.file = {
+    ".local/bin/ghostty-workspace" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+        if pgrep -x ghostty > /dev/null; then
+          ghostty --window
+        else
+          ghostty &
+        fi
+      '';
     };
   };
 
@@ -252,8 +267,30 @@
     "org/gnome/desktop/interface" = {
       enable-animations = false;
     };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = ["/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Ghostty Workspace";
+      command = "${config.home.homeDirectory}/.local/bin/ghostty-workspace";
+      binding = "<Alt>Return";
+    };
     "org/gnome/shell" = {
       enabled-extensions = ["workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
     };
+  };
+
+  systemd.user.services.devilspie2 = {
+    Unit = {
+      Description = "Devilspie2 window manager";
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
+    };
+    Service = {
+      ExecStart = "${pkgs.devilspie2}/bin/devilspie2";
+      Restart = "on-failure";
+      Environment = "GDK_BACKEND=x11";
+    };
+    Install.WantedBy = ["graphical-session.target"];
   };
 }
