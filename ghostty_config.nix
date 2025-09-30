@@ -1,7 +1,7 @@
 {pkgs}: {
   copy-on-select = "clipboard";
   window-decoration = false;
-  font-size = 18;
+  font-size = 14;
   font-thicken = true;
   font-feature = "-calt";
   command = "${pkgs.lib.getExe pkgs.fish}";
