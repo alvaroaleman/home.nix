@@ -264,6 +264,9 @@
     "org/gnome/mutter" = {
       dynamic-workspaces = false;
     };
+    "org/gnome/desktop/notifications" = {
+      show-banners = false;
+    };
     "org/gnome/desktop/wm/preferences" = {
       num-workspaces = 9;
     };
