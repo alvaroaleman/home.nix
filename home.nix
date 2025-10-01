@@ -221,6 +221,15 @@
       modifier = "Mod1";
       bars = [];
       output."*".bg = "${config.home.homeDirectory}/.local/share/backgrounds/amber-l.png fill";
+      colors = {
+        focused = {
+          border = "#5c3566";
+          background = "#5c3566";
+          text = "#ffffff";
+          indicator = "#5c3566";
+          childBorder = "#5c3566";
+        };
+      };
       window = {
         border = 0;
         commands = [
