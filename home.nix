@@ -50,6 +50,7 @@
         brightnessctl
         wireplumber
         fuzzel
+        powertop
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
