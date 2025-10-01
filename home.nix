@@ -234,6 +234,12 @@
           childBorder = "#5c3566";
         };
       };
+      input = {
+        "type:touchpad" = {
+          tap = "enabled";
+          click_method = "clickfinger";
+        };
+      };
       floating.criteria = [
         {app_id = "blueman-manager";}
         {app_id = "nm-connection-editor";}
