@@ -234,18 +234,13 @@
           childBorder = "#5c3566";
         };
       };
+      floating.criteria = [
+        {app_id = "blueman-manager";}
+        {app_id = "nm-connection-editor";}
+        {app_id = "signal";}
+      ];
       window = {
         border = 0;
-        commands = [
-          {
-            criteria = {app_id = "nm-connection-editor";};
-            command = "floating enable";
-          }
-          {
-            criteria = {app_id = "blueman-manager";};
-            command = "floating enable";
-          }
-        ];
       };
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
