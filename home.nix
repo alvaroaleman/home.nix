@@ -409,4 +409,37 @@
     startupNotify = true;
     mimeType = ["x-scheme-handler/slack"];
   };
+
+  services.kanshi = {
+    enable = true;
+    systemdTarget = "sway-session.target";
+
+    settings = [
+      {
+        profile.name = "undocked";
+        profile.outputs = [
+          {
+            criteria = "eDP-1";
+            status = "enable";
+          }
+        ];
+      }
+      {
+        profile.name = "docked";
+        profile.outputs = [
+          {
+            criteria = "Dell Inc. DELL S2725QS 9KJF364";
+            status = "enable";
+            mode = "3840x2160@120Hz";
+            position = "0,0";
+            scale = 2.0;
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      }
+    ];
+  };
 }
