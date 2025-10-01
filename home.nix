@@ -246,6 +246,7 @@
           "${modifier}+s" = "layout stacking; border normal";
           "${modifier}+w" = "layout tabbed; border normal";
           "${modifier}+e" = "layout toggle split; border pixel 0";
+          "Mod1+Tab" = "workspace back_and_forth";
 
           # Brightness
           "XF86MonBrightnessUp" = "exec brightnessctl s +10%";
