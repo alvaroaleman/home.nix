@@ -223,6 +223,16 @@
       output."*".bg = "${config.home.homeDirectory}/.local/share/backgrounds/amber-l.png fill";
       window = {
         border = 0;
+        commands = [
+          {
+            criteria = {app_id = "nm-connection-editor";};
+            command = "floating enable";
+          }
+          {
+            criteria = {app_id = "blueman-manager";};
+            command = "floating enable";
+          }
+        ];
       };
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
