@@ -221,7 +221,19 @@
       modifier = "Mod1";
       bars = [];
       output."*".bg = "${config.home.homeDirectory}/.local/share/backgrounds/amber-l.png fill";
+      window = {
+        border = 0;
+      };
+      keybindings = let
+        modifier = config.wayland.windowManager.sway.config.modifier;
+      in
+        lib.mkOptionDefault {
+          "${modifier}+s" = "layout stacking; border normal";
+          "${modifier}+w" = "layout tabbed; border normal";
+          "${modifier}+e" = "layout toggle split; border pixel 0";
+        };
     };
+
     checkConfig = false;
   };
 
