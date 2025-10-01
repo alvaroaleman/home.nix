@@ -49,6 +49,7 @@
         nerd-fonts.hack
         brightnessctl
         wireplumber
+        fuzzel
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -220,6 +221,7 @@
     enable = true;
     config = {
       terminal = "${pkgs.ghostty}/bin/ghostty";
+      menu = "${pkgs.fuzzel}/bin/fuzzel --anchor top-left";
       modifier = "Mod1";
       bars = [];
       output."*".bg = "${config.home.homeDirectory}/.local/share/backgrounds/amber-l.png fill";
