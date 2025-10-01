@@ -246,6 +246,21 @@
         modules-left = ["sway/workspaces"];
         modules-right = ["network" "bluetooth" "pulseaudio" "battery" "clock"];
 
+        "sway/workspaces" = {
+          all-outputs = false;
+          persistent-workspaces = {
+            "1" = [];
+            "2" = [];
+            "3" = [];
+            "4" = [];
+            "5" = [];
+            "6" = [];
+            "7" = [];
+            "8" = [];
+            "9" = [];
+          };
+        };
+
         network = {
           format-wifi = "{icon}";
           format-disconnected = "󰖪";
@@ -262,7 +277,7 @@
         };
 
         pulseaudio = {
-          format = "{icon} {volume}%";
+          format = "{icon}";
           format-muted = "󰖁";
           format-icons = {
             default = ["󰕿" "󰖀" "󰕾"];
@@ -271,9 +286,9 @@
         };
 
         battery = {
-          format = "{icon} {capacity}%";
+          format = "{icon}";
           format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
-          format-charging = "󰂄 {capacity}%";
+          format-charging = "󰂄 ";
         };
 
         clock = {
@@ -282,24 +297,7 @@
         };
       };
     };
-
-    style = ''
-         * {
-           font-family: "sans-serif";
-           font-size: 16px;
-      font-weight: bold;
-         }
-
-         window#waybar {
-           background-color: #1e1e1e;
-           color: #ffffff;
-         }
-
-         #network, #bluetooth, #pulseaudio, #battery, #clock {
-           padding: 0 10px;
-           color: #ffffff;
-         }
-    '';
+    style = builtins.readFile ./waybar-style.css;
   };
 
   services.skhd = lib.mkIf pkgs.stdenv.isDarwin {

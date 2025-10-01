@@ -1,0 +1,25 @@
+  * {
+    font-family: "sans-serif";
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  window#waybar {
+    background-color: #1e1e1e;
+    color: #ffffff;
+  }
+
+  #workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: #ffffff;
+  }
+
+  #workspaces button.focused {
+    background-color: #404040;
+  }
+
+  #network, #bluetooth, #pulseaudio, #battery, #clock {
+    padding: 0 10px;
+    color: #ffffff;
+  }
