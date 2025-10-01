@@ -239,9 +239,6 @@
         {app_id = "nm-connection-editor";}
         {app_id = "signal";}
       ];
-      window = {
-        border = 0;
-      };
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
       in
@@ -262,6 +259,10 @@
     };
 
     checkConfig = false;
+
+    extraConfig = ''
+      default_border none
+    '';
   };
 
   programs.waybar = {
