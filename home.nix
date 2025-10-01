@@ -29,15 +29,9 @@
         ghostty
         gnumake
         google-chrome
-        devilspie2
-        (pkgs.slack.overrideAttrs (old: {
-          installPhase =
-            old.installPhase
-            + ''
-              substituteInPlace $out/share/applications/slack.desktop \
-                --replace "Exec=slack" "Exec=env GDK_BACKEND=x11 slack"
-            '';
-        }))
+        (pkgs.writeShellScriptBin "slack" ''
+          exec ${pkgs.slack}/bin/slack --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
+        '')
         zoom-us
         wl-clipboard
         zig
@@ -368,17 +362,13 @@
     };
   };
 
-  systemd.user.services.devilspie2 = {
-    Unit = {
-      Description = "Devilspie2 window manager";
-      After = ["graphical-session-pre.target"];
-      PartOf = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStart = "${pkgs.devilspie2}/bin/devilspie2";
-      Restart = "on-failure";
-      Environment = "GDK_BACKEND=x11";
-    };
-    Install.WantedBy = ["graphical-session.target"];
+  xdg.desktopEntries.slack = {
+    name = "Slack";
+    exec = "slack %U";
+    icon = "slack";
+    type = "Application";
+    categories = ["Network" "InstantMessaging"];
+    startupNotify = true;
+    mimeType = ["x-scheme-handler/slack"];
   };
 }
