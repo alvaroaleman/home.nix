@@ -138,7 +138,7 @@
 
   powerManagement.powertop.enable = true; # enable powertop auto tuning on startup.
   services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
-  services.thermald.enable = true; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
+  services.thermald.enable = false; # https://linrunner.de/tlp/faq/powercon.html#high-fan-speed
   services.power-profiles-daemon.enable = false; # Disable GNOMEs power management
   services.tlp = {
     enable = true; # Enable TLP (better than gnomes internal power manager)
