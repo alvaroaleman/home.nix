@@ -51,6 +51,7 @@
         wireplumber
         fuzzel
         powertop
+        jq
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -221,6 +222,9 @@
   wayland.windowManager.sway = {
     enable = true;
     config = {
+      focus = {
+        newWindow = "focus";
+      };
       terminal = "${pkgs.ghostty}/bin/ghostty";
       menu = "${pkgs.fuzzel}/bin/fuzzel --anchor top-left";
       modifier = "Mod1";
