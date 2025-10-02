@@ -157,4 +157,10 @@
       STOP_CHARGE_THRESH_BAT0 = 81;
     };
   };
+
+  services.resolved = {
+    enable = true;
+    dnssec = "false";
+    fallbackDns = ["1.1.1.1"];
+  };
 }
