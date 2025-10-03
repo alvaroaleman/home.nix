@@ -57,6 +57,7 @@
         rustfmt
         clippy
         gcc
+        killall
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
