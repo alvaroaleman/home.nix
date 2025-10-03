@@ -34,7 +34,6 @@
         '')
         zoom-us
         wl-clipboard
-        zig
         azure-cli
         awscli2
         google-cloud-sdk
@@ -52,6 +51,12 @@
         fuzzel
         powertop
         jq
+        rustc
+        cargo
+        rust-analyzer
+        rustfmt
+        clippy
+        gcc
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
