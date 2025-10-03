@@ -26,7 +26,12 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    # Systemd-Resolved is hardcoded to downgrade to TCP after packet loss and thus works
+    # extremely badly on unreliable connections, ref https://github.com/systemd/systemd/issues/13432
+    dns = "dnsmasq";
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -156,11 +161,5 @@
       START_CHARGE_THRESH_BAT0 = 75;
       STOP_CHARGE_THRESH_BAT0 = 81;
     };
-  };
-
-  services.resolved = {
-    enable = true;
-    dnssec = "false";
-    fallbackDns = ["1.1.1.1"];
   };
 }
