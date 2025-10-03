@@ -4,7 +4,10 @@
   pkgs,
   nix-search-cli,
   ...
-}: {
+}: let
+  isLinux = pkgs.stdenv.isLinux;
+  isDesktopLinux = isLinux && config.home.username != "root";
+in {
   nixpkgs.config.allowUnfree = true;
   home = {
     packages = with pkgs;
@@ -27,6 +30,8 @@
         skopeo
         kustomize
         zig # Make sure there is a c compiler for treesitter
+      ]
+      ++ lib.optionals isDesktopLinux [
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -156,7 +161,7 @@
     enable = true;
     package = null;
     enableBashIntegration = true;
-    settings = import ./ghostty_config.nix {inherit pkgs;};
+    settings = import ./ghostty_config.nix {inherit pkgs lib isDesktopLinux;};
   };
 
   programs.git = {
