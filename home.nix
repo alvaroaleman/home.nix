@@ -26,6 +26,7 @@
         marksman
         skopeo
         kustomize
+        zig # Make sure there is a c compiler for treesitter
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only

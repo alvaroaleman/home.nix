@@ -29,7 +29,7 @@
 
     userList = ["alvaro" "aaleman"];
 
-    mkHomeConfig = user: {
+    mkMacHomeConfig = user: {
       pkgs = import nixpkgs {
         system = "aarch64-darwin";
       };
@@ -44,10 +44,33 @@
       ];
     };
 
-    homeConfigs = builtins.listToAttrs (
+    macConfigs = builtins.listToAttrs (
       map (user: {
         name = "${user}@darwin";
-        value = home-manager.lib.homeManagerConfiguration (mkHomeConfig user);
+        value = home-manager.lib.homeManagerConfiguration (mkMacHomeConfig user);
+      })
+      userList
+    );
+
+    mkLinuxConfig = user: {
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+      };
+      modules = [
+        {
+          home.username = user;
+        }
+        ./home.nix
+        {
+          _module.args = commonModuleArgs;
+        }
+      ];
+    };
+
+    linuxConfigs = builtins.listToAttrs (
+      map (user: {
+        name = "${user}@linux";
+        value = home-manager.lib.homeManagerConfiguration (mkLinuxConfig user);
       })
       userList
     );
@@ -82,7 +105,7 @@
       _module.args = commonModuleArgs;
     };
 
-    homeConfigurations = homeConfigs;
+    homeConfigurations = macConfigs // linuxConfigs;
     darwinConfigurations = darwinConfigs;
   };
 }
