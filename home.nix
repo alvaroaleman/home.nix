@@ -228,6 +228,15 @@
   wayland.windowManager.sway = {
     enable = true;
     config = {
+      assigns = {
+        "7" = [{class = "^zoom$";}];
+      };
+      window.commands = [
+        {
+          criteria = {class = "^zoom$";};
+          command = "move container to workspace 7";
+        }
+      ];
       focus = {
         newWindow = "focus";
       };
