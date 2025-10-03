@@ -352,21 +352,13 @@ require('blink.cmp').setup({
 	},
 })
 
-local lspconfig = require('lspconfig')
 capabilities = require('blink.cmp').get_lsp_capabilities()
 
-local lsp_servers = { "clangd", "gopls", "pylsp", "terraformls", "nixd", "rust_analyzer", "marksman", "starpls" }
-for _, server in ipairs(lsp_servers) do
-	lspconfig[server].setup {
-		capabilities = capabilities,
-	}
-end
 
-
-lspconfig.gopls.setup {
+vim.lsp.config('gopls', {
 	cmd = { 'gopls', "-remote=auto", "-logfile=/tmp/gopls.log", "-rpc.trace" },
 	filetypes = { "go", "gomod" },
-	root_dir = require("lspconfig/util").root_pattern("go.work", "go.mod", ".git"),
+	root_markers = { "go.work", "go.mod", ".git" },
 	capabilities = capabilities,
 	settings = {
 		gopls = {
@@ -382,9 +374,9 @@ lspconfig.gopls.setup {
 			},
 		},
 	},
-}
+})
 
-lspconfig.lua_ls.setup {
+vim.lsp.config('lua_ls', {
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -402,7 +394,23 @@ lspconfig.lua_ls.setup {
 			},
 		},
 	},
-}
+})
+vim.lsp.config('nixd', {
+	settings = {
+		nixd = {
+			formatting = {
+				command = { "alejandra" }
+			}
+		}
+	}
+})
+local lsp_servers = { "clangd", "pylsp", "terraformls", "rust_analyzer", "marksman", "starpls", "gopls", "lua_ls", "nixd" }
+for _, server in ipairs(lsp_servers) do
+	vim.lsp.config(server, {
+		capabilities = capabilities,
+	})
+	vim.lsp.enable(server)
+end
 
 -- Global LSP mappings
 vim.g.mapleader = " "
@@ -605,15 +613,6 @@ vim.g.rainbow_delimiters = {
 	},
 }
 
-require('lspconfig').nixd.setup({
-	settings = {
-		nixd = {
-			formatting = {
-				command = { "alejandra" }
-			}
-		}
-	}
-})
 
 vim.filetype.add({
 	extension = {
