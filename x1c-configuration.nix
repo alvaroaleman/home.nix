@@ -163,6 +163,4 @@
     dnssec = "false";
     fallbackDns = ["1.1.1.1"];
   };
-
-  services.flatpak.enable = true;
 }

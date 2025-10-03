@@ -3,11 +3,8 @@
   lib,
   pkgs,
   nix-search-cli,
-  nix-flatpak,
   ...
 }: {
-  imports = [nix-flatpak.homeManagerModules.nix-flatpak];
-
   nixpkgs.config.allowUnfree = true;
   home = {
     packages = with pkgs;
@@ -35,6 +32,7 @@
         (pkgs.writeShellScriptBin "slack" ''
           exec ${pkgs.slack}/bin/slack --enable-features=UseOzonePlatform --ozone-platform=wayland "$@"
         '')
+        zoom-us
         wl-clipboard
         azure-cli
         awscli2
@@ -461,16 +459,5 @@
         ];
       }
     ];
-  };
-
-  services.flatpak.enable = true;
-  services.flatpak = {
-    remotes = [
-      {
-        name = "flathub";
-        location = "https://flathub.org/repo/flathub.flatpakrepo";
-      }
-    ];
-    packages = ["us.zoom.Zoom"];
   };
 }
