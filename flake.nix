@@ -9,11 +9,14 @@
     };
 
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
   outputs = {
     nixpkgs,
     home-manager,
     nix-search-cli,
+    nix-flatpak,
     ...
   }: {
     nixosConfigurations.x1c = nixpkgs.lib.nixosSystem {
@@ -25,7 +28,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.alvaro = import ./home.nix;
-          home-manager.extraSpecialArgs = { inherit nix-search-cli; };
+          home-manager.extraSpecialArgs = {inherit nix-search-cli nix-flatpak;};
         }
       ];
     };
