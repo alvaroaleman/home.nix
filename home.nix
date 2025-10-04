@@ -263,5 +263,17 @@ in {
       # Show windows from all workspaces in alt-tab
       current-workspace-only = false;
     };
+
+    # New ghostty window through alt+return
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty-new-window/"
+      ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty-new-window" = {
+      name = "Ghostty New Window";
+      command = "${pkgs.ghostty}/bin/ghostty +new-window";
+      binding = "<Alt>Return";
+    };
   };
 }
