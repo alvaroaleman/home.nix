@@ -214,6 +214,11 @@ in {
     };
   };
 
+  home.sessionVariables = lib.mkIf isDesktopLinux {
+    SSH_ASKPASS = "/usr/libexec/seahorse/ssh-askpass";
+    SSH_ASKPASS_REQUIRE = "force";
+  };
+
   dconf.settings = lib.mkIf isDesktopLinux {
     "org/gnome/desktop/wm/keybindings" = {
       switch-to-workspace-1 = ["<Alt>1"];
