@@ -30,6 +30,7 @@ in {
         skopeo
         kustomize
         zig # Make sure there is a c compiler for treesitter
+        nixfmt-rfc-style
       ]
       ++ lib.optionals (isDesktopLinux || pkgs.stdenv.isDarwin) [
         bazelisk
@@ -137,7 +138,6 @@ in {
       terraform-ls # terraformls
       lua-language-server # lua_ls
       nixd # nixlsp
-      alejandra
       starpls
 
       # Additional tools
