@@ -2,7 +2,8 @@
   pkgs,
   user,
   ...
-}: {
+}:
+{
   system.stateVersion = 6;
   system.primaryUser = user;
 
@@ -18,8 +19,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.settings.trusted-users = [user];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  nix.settings.trusted-users = [ user ];
 
   homebrew = {
     enable = true;
@@ -47,7 +51,10 @@
 
   # This does not override the MacOS default shells,
   # just add to them.
-  environment.shells = [pkgs.bash pkgs.fish];
+  environment.shells = [
+    pkgs.bash
+    pkgs.fish
+  ];
 
   users.users.${user} = {
     name = user;

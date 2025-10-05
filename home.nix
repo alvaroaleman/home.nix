@@ -4,13 +4,16 @@
   pkgs,
   nix-search-cli,
   ...
-}: let
+}:
+let
   isLinux = pkgs.stdenv.isLinux;
   isDesktopLinux = isLinux && config.home.username != "root";
-in {
+in
+{
   nixpkgs.config.allowUnfree = true;
   home = {
-    packages = with pkgs;
+    packages =
+      with pkgs;
       [
         hello
         home-manager
@@ -63,11 +66,12 @@ in {
       ];
 
     homeDirectory =
-      if config.home.username == "root"
-      then "/root"
-      else if pkgs.stdenv.isDarwin
-      then "/Users/${config.home.username}"
-      else "/home/${config.home.username}";
+      if config.home.username == "root" then
+        "/root"
+      else if pkgs.stdenv.isDarwin then
+        "/Users/${config.home.username}"
+      else
+        "/home/${config.home.username}";
 
     # You do not need to change this if you're reading this in the future.
     # Don't ever change this after the first build.  Don't ask questions.
@@ -151,7 +155,7 @@ in {
     enable = true;
     package = null;
     enableBashIntegration = true;
-    settings = import ./ghostty_config.nix {inherit pkgs lib isDesktopLinux;};
+    settings = import ./ghostty_config.nix { inherit pkgs lib isDesktopLinux; };
   };
 
   programs.git = {
@@ -184,7 +188,7 @@ in {
 
   programs.ssh = {
     enable = true;
-    includes = ["~/.ssh/config_local"];
+    includes = [ "~/.ssh/config_local" ];
     matchBlocks = {
       "*" = {
         user = "root";
@@ -221,24 +225,24 @@ in {
 
   dconf.settings = lib.mkIf isDesktopLinux {
     "org/gnome/desktop/wm/keybindings" = {
-      switch-to-workspace-1 = ["<Alt>1"];
-      switch-to-workspace-2 = ["<Alt>2"];
-      switch-to-workspace-3 = ["<Alt>3"];
-      switch-to-workspace-4 = ["<Alt>4"];
-      switch-to-workspace-5 = ["<Alt>5"];
-      switch-to-workspace-6 = ["<Alt>6"];
-      switch-to-workspace-7 = ["<Alt>7"];
-      switch-to-workspace-8 = ["<Alt>8"];
-      switch-to-workspace-9 = ["<Alt>9"];
-      move-to-workspace-1 = ["<Alt><Shift>1"];
-      move-to-workspace-2 = ["<Alt><Shift>2"];
-      move-to-workspace-3 = ["<Alt><Shift>3"];
-      move-to-workspace-4 = ["<Alt><Shift>4"];
-      move-to-workspace-5 = ["<Alt><Shift>5"];
-      move-to-workspace-6 = ["<Alt><Shift>6"];
-      move-to-workspace-7 = ["<Alt><Shift>7"];
-      move-to-workspace-8 = ["<Alt><Shift>8"];
-      move-to-workspace-9 = ["<Alt><Shift>9"];
+      switch-to-workspace-1 = [ "<Alt>1" ];
+      switch-to-workspace-2 = [ "<Alt>2" ];
+      switch-to-workspace-3 = [ "<Alt>3" ];
+      switch-to-workspace-4 = [ "<Alt>4" ];
+      switch-to-workspace-5 = [ "<Alt>5" ];
+      switch-to-workspace-6 = [ "<Alt>6" ];
+      switch-to-workspace-7 = [ "<Alt>7" ];
+      switch-to-workspace-8 = [ "<Alt>8" ];
+      switch-to-workspace-9 = [ "<Alt>9" ];
+      move-to-workspace-1 = [ "<Alt><Shift>1" ];
+      move-to-workspace-2 = [ "<Alt><Shift>2" ];
+      move-to-workspace-3 = [ "<Alt><Shift>3" ];
+      move-to-workspace-4 = [ "<Alt><Shift>4" ];
+      move-to-workspace-5 = [ "<Alt><Shift>5" ];
+      move-to-workspace-6 = [ "<Alt><Shift>6" ];
+      move-to-workspace-7 = [ "<Alt><Shift>7" ];
+      move-to-workspace-8 = [ "<Alt><Shift>8" ];
+      move-to-workspace-9 = [ "<Alt><Shift>9" ];
     };
     "org/gnome/mutter" = {
       # Don't dynamically create/destroy workspaces

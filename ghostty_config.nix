@@ -2,17 +2,15 @@
   pkgs,
   lib,
   isDesktopLinux,
-}: {
+}:
+{
   copy-on-select = "clipboard";
   window-decoration = false;
   # These set the initial window size in rows and columns, but that dislocates the window :(
   # https://github.com/ghostty-org/ghostty/issues/7937
   #  window-width = "1000000000";
   #  window-height = "1000000000";
-  font-size =
-    if isDesktopLinux
-    then 14
-    else 18;
+  font-size = if isDesktopLinux then 14 else 18;
   font-thicken = true;
   font-feature = "-calt";
   command = "${pkgs.lib.getExe pkgs.fish}";
@@ -46,14 +44,13 @@
     "15=#b5bfe2"
   ];
 
-  keybind =
-    [
-      "shift+enter=text:\\n"
-      "opt+backspace=text:\\x17"
-    ]
-    ++ lib.optionals isDesktopLinux [
-      "ctrl+v=paste_from_clipboard"
-    ];
+  keybind = [
+    "shift+enter=text:\\n"
+    "opt+backspace=text:\\x17"
+  ]
+  ++ lib.optionals isDesktopLinux [
+    "ctrl+v=paste_from_clipboard"
+  ];
 
   app-notifications = "false";
 }
