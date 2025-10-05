@@ -41,6 +41,11 @@ in {
         google-cloud-sdk
         virt-viewer
         wakeonlan
+        rustc
+        cargo
+        rust-analyzer
+        rustfmt
+        clippy
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
