@@ -18,8 +18,10 @@ if set -q SSH_CONNECTION
       cat | base64 -w0 | read -z encoded
       printf "\033]52;c;%s\033\\" $encoded
     end
-else
+else if type -q pbcopy
     alias c='pbcopy'
+else
+    alias c='wl-copy'
 end
 
 alias k=kubectl
