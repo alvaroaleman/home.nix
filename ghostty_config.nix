@@ -6,10 +6,7 @@
 {
   copy-on-select = "clipboard";
   window-decoration = false;
-  # These set the initial window size in rows and columns, but that dislocates the window :(
-  # https://github.com/ghostty-org/ghostty/issues/7937
-  #  window-width = "1000000000";
-  #  window-height = "1000000000";
+  maximize = true;
   font-size = if isDesktopLinux then 14 else 18;
   font-thicken = true;
   font-feature = "-calt";
