@@ -188,6 +188,7 @@ in
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     includes = [ "~/.ssh/config_local" ];
     matchBlocks = {
       "*" = {
@@ -216,11 +217,6 @@ in
       source = ./sketchybar;
       recursive = true;
     };
-  };
-
-  home.sessionVariables = lib.mkIf isDesktopLinux {
-    SSH_ASKPASS = "/usr/libexec/seahorse/ssh-askpass";
-    SSH_ASKPASS_REQUIRE = "force";
   };
 
   dconf.settings = lib.mkIf isDesktopLinux {
