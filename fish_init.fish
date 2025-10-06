@@ -106,3 +106,5 @@ end
 complete -c aws -f -a "(__fish_complete_aws)"
 
 bind \cw backward-kill-word
+
+export TENV_AUTO_INSTALL=true

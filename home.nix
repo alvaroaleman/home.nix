@@ -50,6 +50,7 @@ in
         rust-analyzer
         rustfmt
         clippy
+        tenv
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -60,7 +61,6 @@ in
         gnugrep
         gnumake
         nerd-fonts.hack
-        tenv
         watch
         granted
       ];
