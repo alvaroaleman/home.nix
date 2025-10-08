@@ -1,7 +1,7 @@
 # vim: ft=fish
 
 if test -f $HOME/.ssh/id_rsa
-  ssh-add -l | grep -q id_rsa; or ssh-add $HOME/.ssh/id_rsa
+  ssh-add -l | grep -Eq 'lxYHmW8Mo6sKO8Iw3ylQ\+7S3SMZTR5ugG51Q7EMnZ60|id_rsa'; or ssh-add $HOME/.ssh/id_rsa
 end
 
 fish_add_path $HOME/.krew/bin
