@@ -35,6 +35,9 @@ in
         zig # Make sure there is a c compiler for treesitter
         nixfmt-rfc-style
       ]
+      ++ lib.optionals isDesktopLinux [
+        kind
+      ]
       ++ lib.optionals (isDesktopLinux || pkgs.stdenv.isDarwin) [
         bazelisk
         (pkgs.writeShellScriptBin "bazel" ''
