@@ -54,6 +54,7 @@ in
         rustfmt
         clippy
         tenv
+        kubernetes-helm
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
