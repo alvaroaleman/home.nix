@@ -275,4 +275,21 @@ in
       binding = "<Alt>Return";
     };
   };
+
+  systemd.user.services = lib.mkIf isDesktopLinux {
+    dock-connected = {
+      Unit = {
+        Description = "Disable sleep when docked";
+        BindsTo = "sys-devices-pci0000:00-0000:00:07.0-0000:20:00.0-0000:21:04.0-0000:49:00.0-net-enp73s0.device";
+      };
+      Service = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "/usr/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 0";
+        ExecStop = "/usr/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 900";
+      };
+    };
+  };
+  # cat /etc/udev/rules.d/90-dock.rules
+  # ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="2188", ATTR{idProduct}=="5500", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="dock-connected.service"
 }
