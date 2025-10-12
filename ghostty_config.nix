@@ -44,6 +44,8 @@
   keybind = [
     "shift+enter=text:\\n"
     "opt+backspace=text:\\x17"
+    "alt+h=new_split:right"
+    "alt+v=new_split:down"
   ]
   ++ lib.optionals isDesktopLinux [
     "ctrl+v=paste_from_clipboard"
