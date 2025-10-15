@@ -34,6 +34,7 @@ in
         kustomize
         zig # Make sure there is a c compiler for treesitter
         nixfmt-rfc-style
+        yq
       ]
       ++ lib.optionals isDesktopLinux [
         kind
