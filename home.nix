@@ -25,7 +25,6 @@ in
         starship
         gh
         goperf # contains benchstat
-        claude-code
         kubevirt
         nix-search-cli.packages.${system}.default
         fd

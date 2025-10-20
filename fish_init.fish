@@ -9,6 +9,13 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path /usr/local/go/bin
 
+# Installing claude through nix causes constant timeouts
+# Ref https://github.com/NixOS/nixpkgs/issues/453955
+fish_add_path $HOME/.npm-global/bin
+mkdir -p ~/.npm-global
+echo 'prefix=~/.npm-global' > ~/.npmrc
+type claude &>/dev/null || npm install -g @anthropic-ai/claude-code
+
 test -d /opt/homebrew/bin && fish_add_path /opt/homebrew/bin
 
 set -x GOBIN $HOME/.local/bin
