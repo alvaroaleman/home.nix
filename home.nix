@@ -46,6 +46,8 @@ in
         '')
         azure-cli
         awscli2
+        ssm-session-manager-plugin
+        pixi
         google-cloud-sdk
         virt-viewer
         wakeonlan
