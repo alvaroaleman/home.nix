@@ -52,10 +52,9 @@ in
         virt-viewer
         wakeonlan
         rustc
-        cargo
-        rust-analyzer
-        rustfmt
-        clippy
+        rustup
+        sccache
+        protobuf
         tenv
         kubernetes-helm
       ]
