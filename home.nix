@@ -51,8 +51,6 @@ in
         google-cloud-sdk
         virt-viewer
         wakeonlan
-        rustc
-        rustup
         sccache
         protobuf
         tenv
