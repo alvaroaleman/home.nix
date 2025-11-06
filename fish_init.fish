@@ -97,8 +97,6 @@ set -U fish_greeting ""
 
 alias unset 'set -e argv[1]'
 
-alias assume='source /Users/aaleman/.nix-profile/share/assume.fish'
-
 if test -f ~/.bashrc_local; bass source ~/.bashrc_local; end
 
 alias then='true;'
@@ -117,3 +115,5 @@ bind \cw backward-kill-word
 export TENV_AUTO_INSTALL=true
 
 export CARGO_BUILD_JOBS=8
+
+alias assume="source /home/alvaro/.nix-profile/bin/assume"

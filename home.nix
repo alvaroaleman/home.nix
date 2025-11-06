@@ -55,6 +55,7 @@ in
         protobuf
         tenv
         kubernetes-helm
+        granted
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
@@ -159,6 +160,7 @@ in
     enable = true;
     package = null;
     enableBashIntegration = true;
+    systemd.enable = false;
     settings = import ./ghostty_config.nix { inherit pkgs lib isDesktopLinux; };
   };
 
