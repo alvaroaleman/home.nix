@@ -223,6 +223,10 @@ in
       source = ./sketchybar;
       recursive = true;
     };
+    ".local/bin/new_ghostty.sh" = {
+      source = ./new_ghostty.sh;
+      recursive = true;
+    };
   };
 
   dconf.settings = lib.mkIf isDesktopLinux {

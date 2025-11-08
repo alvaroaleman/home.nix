@@ -30,6 +30,8 @@ alt-w = 'layout h_accordion' # 'layout tabbed' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
+cmd-enter = 'exec-and-forget ~/.local/bin/new_ghostty.sh'
+
 cmd-1 = 'workspace 1'
 cmd-2 = 'workspace 2'
 cmd-3 = 'workspace 3'
