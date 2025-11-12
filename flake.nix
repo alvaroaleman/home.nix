@@ -32,6 +32,7 @@
       userList = [
         "alvaro"
         "aaleman"
+        "alvaro.aleman"
       ];
 
       mkMacHomeConfig = user: {
