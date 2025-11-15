@@ -52,7 +52,7 @@
 
       macConfigs = builtins.listToAttrs (
         map (user: {
-          name = "${user}@darwin";
+          name = builtins.replaceStrings [ "." ] [ "_" ] user + "@darwin";
           value = home-manager.lib.homeManagerConfiguration (mkMacHomeConfig user);
         }) userList
       );
@@ -74,7 +74,7 @@
 
       linuxConfigs = builtins.listToAttrs (
         map (user: {
-          name = "${user}@linux";
+          name = builtins.replaceStrings [ "." ] [ "_" ] user + "@linux";
           value = home-manager.lib.homeManagerConfiguration (mkLinuxConfig user);
         }) userList
       );
@@ -98,7 +98,7 @@
 
       darwinConfigs = builtins.listToAttrs (
         map (user: {
-          name = "${user}@darwin";
+          name = builtins.replaceStrings [ "." ] [ "_" ] user;
           value = darwin.lib.darwinSystem (mkDarwinConfig user);
         }) userList
       );
