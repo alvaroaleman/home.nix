@@ -15,3 +15,8 @@ darwin:
 .PHONY: diff
 diff:
 	@./hack/diff.sh
+
+.PHONY: cleanup
+cleanup:
+	nix-env --delete-generations old
+	nix-store --gc
