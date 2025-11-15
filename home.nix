@@ -26,7 +26,7 @@ in
         gh
         goperf # contains benchstat
         kubevirt
-        nix-search-cli.packages.${system}.default
+        nix-search-cli.packages.${stdenv.hostPlatform.system}.default
         fd
         marksman
         skopeo
@@ -166,17 +166,15 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Alvaro Aleman";
-    userEmail = "alvaroaleman@users.noreply.github.com";
-    aliases = {
-      s = "status";
-      co = "checkout";
-    };
-    ignores = [
-      "temp"
-      "**/.claude/settings.local.json"
-    ];
-    extraConfig = {
+    settings = {
+      alias = {
+        s = "status";
+        co = "checkout";
+      };
+      user = {
+        name = "Alvaro Aleman";
+        email = "alvaroaleman@users.noreply.github.com";
+      };
       diff = {
         colorMoved = "default";
         algorithm = "histogram";
@@ -185,6 +183,10 @@ in
         autoSetupRemote = true;
       };
     };
+    ignores = [
+      "temp"
+      "**/.claude/settings.local.json"
+    ];
   };
 
   programs.starship = {
