@@ -116,7 +116,7 @@ export TENV_AUTO_INSTALL=true
 
 export CARGO_BUILD_JOBS=8
 
-alias assume="bass source /home/alvaro/.nix-profile/bin/assume"
+alias assume="bass source $HOME/.nix-profile/bin/assume"
 if not test -f ~/.config/fish/completions/granted.fish
     granted completion -s fish > ~/.config/fish/completions/granted.fish
 end
