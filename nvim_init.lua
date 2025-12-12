@@ -404,7 +404,15 @@ vim.lsp.config('nixd', {
 		}
 	}
 })
-local lsp_servers = { "clangd", "pylsp", "terraformls", "rust_analyzer", "marksman", "starpls", "gopls", "lua_ls", "nixd" }
+vim.lsp.config('basedpyright', {
+	cmd = { 'basedpyright-langserver', '--stdio' },
+	filetypes = { 'python' },
+	root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json', '.git' },
+	capabilities = capabilities,
+})
+
+local lsp_servers = { "clangd", "basedpyright", "terraformls", "rust_analyzer", "marksman", "starpls", "gopls",
+	"lua_ls", "nixd" }
 for _, server in ipairs(lsp_servers) do
 	vim.lsp.config(server, {
 		capabilities = capabilities,

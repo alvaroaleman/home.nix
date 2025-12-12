@@ -143,7 +143,7 @@ in
       # Language servers
       clang-tools # clangd
       gopls
-      python313Packages.python-lsp-server # pylsp
+      basedpyright
       terraform-ls # terraformls
       lua-language-server # lua_ls
       nixd # nixlsp
