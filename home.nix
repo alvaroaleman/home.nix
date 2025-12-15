@@ -216,7 +216,6 @@ in
   };
 
   programs.aerospace = lib.mkIf pkgs.stdenv.isDarwin {
-    enable = true;
     package = null;
     userSettings = builtins.fromTOML (builtins.readFile ./aerospace.toml);
   };
