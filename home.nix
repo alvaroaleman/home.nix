@@ -113,6 +113,7 @@ in
       blink-cmp
       blink-cmp-copilot
       nvim-lspconfig
+      rustaceanvim
       nvim-treesitter
       gitsigns-nvim
       nvim-autopairs
