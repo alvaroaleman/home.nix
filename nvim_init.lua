@@ -47,19 +47,10 @@ vim.cmd("let g:airline#extensions#tabline#show_tab_type=0")
 vim.cmd("let g:airline_disable_statusline = 1")
 vim.cmd("let g:airline_theme='distinguished'")
 
-local parser_install_dir = vim.fn.stdpath("data") .. "/treesitter"
-vim.opt.runtimepath:prepend(parser_install_dir)
-
-require("nvim-treesitter.configs").setup({
-	modules = {},
-	ensure_installed = {}, -- Empty, managed by Nix
-	ignore_install = {},
-	sync_install = false,
-	parser_install_dir = parser_install_dir,
-	auto_install = true, -- Disabled, managed by Nix
-	highlight = {
-		enable = true,
-	},
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
 })
 
 require("nvim-autopairs").setup {}

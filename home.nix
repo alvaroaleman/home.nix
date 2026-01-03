@@ -114,7 +114,7 @@ in
       blink-cmp-copilot
       nvim-lspconfig
       rustaceanvim
-      nvim-treesitter
+      (nvim-treesitter.withAllGrammars)
       gitsigns-nvim
       nvim-autopairs
       indent-blankline-nvim
