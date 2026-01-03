@@ -215,11 +215,6 @@ in
     config = ./skhdrc;
   };
 
-  programs.aerospace = lib.mkIf pkgs.stdenv.isDarwin {
-    package = null;
-    userSettings = builtins.fromTOML (builtins.readFile ./aerospace.toml);
-  };
-
   home.file = lib.mkIf pkgs.stdenv.isDarwin {
     ".config/sketchybar" = {
       source = ./sketchybar;
@@ -228,6 +223,9 @@ in
     ".local/bin/new_ghostty.sh" = {
       source = ./new_ghostty.sh;
       recursive = true;
+    };
+    ".config/aerospace/aerospace.toml" = {
+      source = ./aerospace.toml;
     };
   };
 

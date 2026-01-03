@@ -40,7 +40,7 @@ sketchybar --default icon.font="Hack Nerd Font:Bold:17.0"  \
                      icon.padding_right=4
 sketchybar --add event aerospace_workspace_change
 
-for sid in $(aerospace list-workspaces --all|sort -n); do
+for sid in $(aerospace list-workspaces --all|rg '[0-9]'|sort -n); do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid aerospace_workspace_change \
         --set space.$sid \
