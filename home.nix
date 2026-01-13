@@ -35,6 +35,7 @@ in
         nixfmt-rfc-style
         yq-go
         gron
+        uv
       ]
       ++ lib.optionals isDesktopLinux [
         kind
