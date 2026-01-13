@@ -144,7 +144,7 @@ in
       # Language servers
       clang-tools # clangd
       gopls
-      basedpyright
+      ty
       terraform-ls # terraformls
       lua-language-server # lua_ls
       nixd # nixlsp
