@@ -32,7 +32,7 @@ in
         skopeo
         kustomize
         zig # Make sure there is a c compiler for treesitter
-        nixfmt-rfc-style
+        nixfmt
         yq-go
         gron
         uv
