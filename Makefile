@@ -19,4 +19,6 @@ diff:
 .PHONY: cleanup
 cleanup:
 	nix-env --delete-generations old
+	home-manager expire-generations "-7 days"
 	nix-store --gc
+	sudo nix-collect-garbage -d
