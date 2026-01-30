@@ -100,11 +100,6 @@ function save_history --on-event fish_postexec
     history save
 end
 
-# Loads history from disk into current session
-function merge_history --on-event fish_prompt
-    history merge
-end
-
 alias unset 'set -e argv[1]'
 
 if test -f ~/.bashrc_local; bass source ~/.bashrc_local; end
