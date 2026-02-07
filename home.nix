@@ -155,7 +155,7 @@ in
       tree-sitter
     ];
 
-    extraLuaConfig = builtins.readFile ./nvim_init.lua;
+    initLua = builtins.readFile ./nvim_init.lua;
   };
 
   programs.ghostty = {
