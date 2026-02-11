@@ -18,7 +18,7 @@ in
         hello
         home-manager
         nodejs # needed for vim-copilot
-        go
+        go_1_26
         ripgrep
         kubectl
         krew
