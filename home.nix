@@ -24,6 +24,7 @@ in
         krew
         starship
         gh
+        gopls
         goperf # contains benchstat
         kubevirt
         nix-search-cli.packages.${stdenv.hostPlatform.system}.default
@@ -144,7 +145,6 @@ in
     extraPackages = with pkgs; [
       # Language servers
       clang-tools # clangd
-      gopls
       ty
       terraform-ls # terraformls
       lua-language-server # lua_ls
