@@ -1,0 +1,9 @@
+{
+  "model": "opus",
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.github.com)"
+    ]
+  }
+}

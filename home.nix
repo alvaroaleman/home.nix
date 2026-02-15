@@ -193,7 +193,7 @@ in
 
   programs.starship = {
     enable = true;
-    settings = builtins.fromTOML (builtins.readFile ./starship.toml);
+    settings = fromTOML (builtins.readFile ./starship.toml);
   };
 
   programs.ssh = {
@@ -216,19 +216,31 @@ in
     config = ./skhdrc;
   };
 
-  home.file = lib.mkIf pkgs.stdenv.isDarwin {
-    ".config/sketchybar" = {
-      source = ./sketchybar;
-      recursive = true;
-    };
-    ".local/bin/new_ghostty.sh" = {
-      source = ./new_ghostty.sh;
-      recursive = true;
-    };
-    ".config/aerospace/aerospace.toml" = {
-      source = ./aerospace.toml;
-    };
-  };
+  home.file = lib.mkMerge [
+    {
+      ".claude/settings.json" = {
+        source = ./claude_settings.json;
+      };
+    }
+    {
+      ".claude/CLAUDE.md" = {
+        source = ./claude_global.md;
+      };
+    }
+    (lib.mkIf pkgs.stdenv.isDarwin {
+      ".config/sketchybar" = {
+        source = ./sketchybar;
+        recursive = true;
+      };
+      ".local/bin/new_ghostty.sh" = {
+        source = ./new_ghostty.sh;
+        recursive = true;
+      };
+      ".config/aerospace/aerospace.toml" = {
+        source = ./aerospace.toml;
+      };
+    })
+  ];
 
   dconf.settings = lib.mkIf isDesktopLinux {
     "org/gnome/desktop/wm/keybindings" = {
