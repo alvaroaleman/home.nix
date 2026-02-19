@@ -5,17 +5,13 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.github.com)",
       "mcp__gopls",
-      "Bash(go test:*)",
-      "Bash(go doc:*)",
-      "Bash(go build:*)",
-      "Bash(go mod tidy:*)",
-      "Bash(go get:*)",
-      "Bash(go vet:*)",
-      "Bash(go env:*)",
+      "Bash(go:*)",
       "Bash(git show:*)",
       "Bash(grep:*)",
       "Bash(find:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(gofmt:*)",
+      "Bash(wc:*)"
     ]
   }
 }
