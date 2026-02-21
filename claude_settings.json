@@ -2,16 +2,29 @@
   "model": "opus",
   "permissions": {
     "allow": [
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.github.com)",
-      "mcp__gopls",
-      "Bash(go:*)",
-      "Bash(git show:*)",
-      "Bash(grep:*)",
+      "Bash(cargo test:*)",
       "Bash(find:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh run view:*)",
+      "Bash(git add:*)",
+      "Bash(git fetch:*)",
+      "Bash(git grep:*)",
+      "Bash(git rebase:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git show:*)",
+      "Bash(go:*)",
+      "Bash(golangci-lint run:*)",
+      "Bash(grep:*)",
       "Bash(ls:*)",
-      "Bash(gofmt:*)",
-      "Bash(wc:*)"
+      "Bash(shasum:*)",
+      "Bash(wc:*)",
+      "mcp__gopls",
+      "WebFetch(domain:community.grafana.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:grafana.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:raw.github.com)"
     ]
   }
 }
