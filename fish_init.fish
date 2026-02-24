@@ -83,7 +83,7 @@ end
 
 function gwt
     set -l name (openssl rand -hex 10)
-    git worktree add .claude/worktrees/$name && cd .claude/worktrees/$name
+    git worktree add .worktrees/$name -B $name main && cd .worktrees/$name
 end
 
 if command -q cargo
