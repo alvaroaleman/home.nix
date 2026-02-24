@@ -187,7 +187,7 @@ in
     };
     ignores = [
       "temp"
-      "**/.claude/settings.local.json"
+      "**/.claude"
     ];
   };
 

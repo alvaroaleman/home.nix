@@ -81,6 +81,11 @@ function mkcd
     mkdir -p $argv[1]; and cd $argv[1]
 end
 
+function gwt
+    set -l name (openssl rand -hex 10)
+    git worktree add .claude/worktrees/$name && cd .claude/worktrees/$name
+end
+
 if command -q cargo
     command -q kube-switch; or cargo install --git https://github.com/alvaroaleman/kube-switch.git
     kube-switch completion fish|source -
