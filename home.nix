@@ -58,6 +58,7 @@ in
         tenv
         kubernetes-helm
         granted
+        ruff
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
