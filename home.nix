@@ -51,7 +51,6 @@ in
         ssm-session-manager-plugin
         pixi
         google-cloud-sdk
-        virt-viewer
         wakeonlan
         sccache
         protobuf
