@@ -2,7 +2,8 @@
   "model": "opus",
   "env": { "ENABLE_LSP_TOOL": "1" },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
   },
   "permissions": {
     "allow": [
