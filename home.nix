@@ -37,6 +37,9 @@ in
         yq-go
         gron
         uv
+        kubectl-view-allocations
+        kubectl-evict-pod
+        mcp-grafana
       ]
       ++ lib.optionals isDesktopLinux [
         kind
