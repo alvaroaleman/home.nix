@@ -443,8 +443,8 @@ end
 -- Global LSP mappings
 vim.g.mapleader = " "
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end)
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 -- LSP attach autocommand
@@ -516,9 +516,9 @@ vim.cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
 
 -- Go organize imports
 local function org_imports()
-	local clients = vim.lsp.buf_get_clients()
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
 	for _, client in pairs(clients) do
-		local params = vim.lsp.util.make_range_params(nil, client.offset_encoding)
+		local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
 		params.context = { only = { "source.organizeImports" } }
 
 		local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 5000)
@@ -527,7 +527,7 @@ local function org_imports()
 				if r.edit then
 					vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
 				else
-					vim.lsp.buf.execute_command(r.command)
+					client:exec_cmd(r.command)
 				end
 			end
 		end
@@ -576,7 +576,10 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 function LspRename()
 	local curr_name = vim.fn.expand("<cword>")
 	local value = vim.fn.input("LSP Rename: ", curr_name)
-	local lsp_params = vim.lsp.util.make_position_params()
+	local clients = vim.lsp.get_clients({ bufnr = 0 })
+	if #clients == 0 then return end
+	local client = clients[1]
+	local lsp_params = vim.lsp.util.make_position_params(0, client.offset_encoding)
 
 	if not value or #value == 0 or curr_name == value then return end
 
@@ -584,8 +587,8 @@ function LspRename()
 	vim.lsp.buf_request(0, "textDocument/rename", lsp_params, function(_, res, ctx, _)
 		if not res then return end
 
-		local client = vim.lsp.get_client_by_id(ctx.client_id)
-		vim.lsp.util.apply_workspace_edit(res, client.offset_encoding)
+		local rename_client = vim.lsp.get_clients({ id = ctx.client_id })[1]
+		vim.lsp.util.apply_workspace_edit(res, rename_client.offset_encoding)
 
 		local changed_files_count = 0
 		local changed_instances_count = 0
