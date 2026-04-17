@@ -67,7 +67,6 @@ end
 setup_project_aliases
 
 set -x SYSTEMD_PAGER
-set -x CGO_ENABLED 0
 set -x EDITOR nvim
 
 kubectl completion fish | sed 's/kubectl/k/g' | source -

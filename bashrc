@@ -28,7 +28,6 @@ export SYSTEMD_PAGER=
 alias vim=nvim
 alias g=git
 
-export CGO_ENABLED=0
 export EDITOR=nvim
 
 alias controller-runtime='cd $HOME/git/go/src/sigs.k8s.io/controller-runtime'
