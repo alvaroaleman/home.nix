@@ -113,6 +113,8 @@ in
 
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = false;
 
     plugins = with pkgs.vimPlugins; [
       blink-cmp
@@ -171,6 +173,7 @@ in
 
   programs.git = {
     enable = true;
+    signing.format = null;
     settings = {
       alias = {
         s = "status";
