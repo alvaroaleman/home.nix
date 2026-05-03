@@ -61,6 +61,7 @@ in
         kubernetes-helm
         granted
         ruff
+        kind
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
