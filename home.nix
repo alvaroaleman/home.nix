@@ -62,6 +62,7 @@ in
         granted
         ruff
         kind
+        podman
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
