@@ -107,6 +107,7 @@ end
 alias unset 'set -e argv[1]'
 
 if test -f ~/.bashrc_local; bass source ~/.bashrc_local; end
+if test -f ~/.fishrc_local; source ~/.fishrc_local; end
 
 alias then='true;'
 
