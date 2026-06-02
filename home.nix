@@ -40,6 +40,7 @@ in
         kubectl-view-allocations
         kubectl-evict-pod
         mcp-grafana
+        pwgen
       ]
       ++ lib.optionals isDesktopLinux [
         kind
