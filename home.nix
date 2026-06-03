@@ -209,10 +209,10 @@ in
     enable = true;
     enableDefaultConfig = false;
     includes = [ "~/.ssh/config_local" ];
-    matchBlocks = {
+    settings = {
       "*" = {
-        user = "root";
-        setEnv = {
+        User = "root";
+        SetEnv = {
           TERM = "xterm-256color";
         };
       };
