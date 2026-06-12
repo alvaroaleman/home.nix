@@ -41,9 +41,7 @@ in
         kubectl-evict-pod
         mcp-grafana
         pwgen
-      ]
-      ++ lib.optionals isDesktopLinux [
-        kind
+        grpcurl
       ]
       ++ lib.optionals (isDesktopLinux || pkgs.stdenv.isDarwin) [
         bazelisk
