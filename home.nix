@@ -58,7 +58,6 @@ in
         wakeonlan
         sccache
         protobuf
-        tenv
         kubernetes-helm
         granted
         ruff
@@ -76,6 +75,10 @@ in
         nerd-fonts.hack
         watch
         granted
+        rancher
+        aws-vault
+        google-cloud-sdk
+        tfenv
       ];
 
     homeDirectory =
