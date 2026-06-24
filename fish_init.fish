@@ -132,3 +132,5 @@ if not test -f ~/.config/fish/completions/granted.fish
     granted completion -s fish > ~/.config/fish/completions/granted.fish
 end
 source ~/.config/fish/completions/granted.fish
+
+fish_add_path $HOME/.nix-profile/bin
