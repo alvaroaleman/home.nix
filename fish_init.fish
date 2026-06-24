@@ -7,6 +7,7 @@ end
 fish_add_path $HOME/.krew/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/bin
 fish_add_path /usr/local/go/bin
 
 # Installing claude through nix causes constant timeouts
