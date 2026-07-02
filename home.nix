@@ -61,12 +61,6 @@ in
         ruff
         kind
         podman
-        # Create a symlink for the docker command so this works in any shell
-        # or command runner
-        (pkgs.runCommand "docker-podman-symlink" { } ''
-          mkdir -p $out/bin
-          ln -s ${pkgs.podman}/bin/podman $out/bin/docker
-        '')
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only

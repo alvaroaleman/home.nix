@@ -41,10 +41,6 @@ alias vim=nvim
 alias g=git
 alias brew=/opt/homebrew/bin/brew
 
-if command -q podman
-    alias docker=podman
-end
-
 function setup_project_aliases
     set -l configs \
         ~/git/go/src/k8s.io/ 1 \
