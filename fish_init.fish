@@ -41,6 +41,10 @@ alias vim=nvim
 alias g=git
 alias brew=/opt/homebrew/bin/brew
 
+if command -q podman
+    alias docker=podman
+end
+
 function setup_project_aliases
     set -l configs \
         ~/git/go/src/k8s.io/ 1 \
@@ -69,8 +73,6 @@ setup_project_aliases
 
 set -x SYSTEMD_PAGER
 set -x EDITOR nvim
-
-kubectl completion fish | sed 's/kubectl/k/g' | source -
 
 if not test -e ~/.git-auto-complete.fish
     curl --fail -L https://raw.githubusercontent.com/fish-shell/fish-shell/master/share/completions/git.fish > ~/.git-auto-complete.fish
