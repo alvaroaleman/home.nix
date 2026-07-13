@@ -42,6 +42,7 @@ in
         mcp-grafana
         pwgen
         grpcurl
+        jujutsu
       ]
       ++ lib.optionals (isDesktopLinux || pkgs.stdenv.isDarwin) [
         bazelisk
