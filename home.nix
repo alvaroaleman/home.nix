@@ -78,6 +78,7 @@ in
         aws-vault
         google-cloud-sdk
         tfenv
+        vault
       ];
 
     homeDirectory =
