@@ -109,6 +109,8 @@
         _module.args = commonModuleArgs;
       };
 
+      darwinModules.default = ./darwin.nix;
+
       homeConfigurations = macConfigs // linuxConfigs;
       darwinConfigurations = darwinConfigs;
     };
