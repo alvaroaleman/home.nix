@@ -505,6 +505,11 @@ local highlights = {
 	GruvboxPurpleSign = { fg = colors.bright_purple, bg = colors.bg0 },
 	GruvboxAquaSign = { fg = colors.bright_aqua, bg = colors.bg0 },
 	GruvboxOrangeSign = { fg = colors.bright_orange, bg = colors.bg0 },
+	-- gopls tags the package-name segment of imports (e.g. "workflow" in
+	-- "go.temporal.io/sdk/workflow", or "fmt") as a namespace semantic token.
+	-- gruvbox leaves this group unstyled, so it defaults to white. Explicitly
+	-- set white here so this knob is easy to find and change later.
+	["@lsp.type.namespace"] = { fg = colors.light1 or colors.fg },
 }
 for group, settings in pairs(highlights) do
 	vim.api.nvim_set_hl(0, group, settings)
