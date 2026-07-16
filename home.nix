@@ -43,6 +43,7 @@ in
         pwgen
         grpcurl
         jujutsu
+        temporal-cli
       ]
       ++ lib.optionals (isDesktopLinux || pkgs.stdenv.isDarwin) [
         bazelisk
