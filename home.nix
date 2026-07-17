@@ -80,6 +80,7 @@ in
         google-cloud-sdk
         tfenv
         vault
+        kubelogin
       ];
 
     homeDirectory =
