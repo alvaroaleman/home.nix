@@ -63,6 +63,7 @@ in
         ruff
         kind
         podman
+        tailscale
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
