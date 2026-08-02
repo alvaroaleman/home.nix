@@ -64,6 +64,7 @@ in
         kind
         podman
         tailscale
+        pi-coding-agent
       ]
       ++ lib.optionals pkgs.stdenv.isDarwin [
         # GNU tools for macOS only
