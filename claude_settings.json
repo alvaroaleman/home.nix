@@ -32,5 +32,9 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:raw.github.com)"
     ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
   }
 }
