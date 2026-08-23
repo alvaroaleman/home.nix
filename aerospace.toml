@@ -64,30 +64,6 @@ l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
 
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-if.during-aerospace-startup = false
-check-further-callbacks = true
-run = ['move-node-to-workspace 1']  #
-
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-if.during-aerospace-startup = false
-check-further-callbacks = true
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-id = 'org.mozilla.firefox'
-if.during-aerospace-startup = false
-check-further-callbacks = true
-run = ['move-node-to-workspace 6']
-
-[[on-window-detected]]
-if.app-id = 'us.zoom.xos'
-if.during-aerospace-startup = false
-check-further-callbacks = true
-run = ['move-node-to-workspace 7']
-
 [gaps]
 outer.top = [
 { monitor."Built-in" = 0 },
