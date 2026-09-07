@@ -130,6 +130,7 @@ in
       blink-cmp
       blink-cmp-copilot
       nvim-lspconfig
+      conform-nvim
       rustaceanvim
       (nvim-treesitter.withAllGrammars)
       gitsigns-nvim
@@ -165,6 +166,9 @@ in
       lua-language-server # lua_ls
       nixd # nixlsp
       starpls
+
+      # Formatters
+      hujsonfmt
 
       # Additional tools
       tree-sitter

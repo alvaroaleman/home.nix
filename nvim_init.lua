@@ -56,6 +56,29 @@ vim.api.nvim_create_autocmd("FileType", {
 require("nvim-autopairs").setup {}
 require("ibl").setup {}
 
+vim.filetype.add({
+	extension = {
+		hujson = "jsonc",
+	},
+})
+
+require("conform").setup({
+	formatters_by_ft = {
+		json = { "hujsonfmt" },
+		jsonc = { "hujsonfmt" },
+	},
+	formatters = {
+		hujsonfmt = {
+			command = "hujsonfmt",
+			stdin = true,
+		},
+	},
+	format_on_save = {
+		timeout_ms = 2000,
+		lsp_format = "fallback",
+	},
+})
+
 require("illuminate").configure({
 	delay = 200,
 	large_file_cutoff = 2000,
@@ -424,7 +447,7 @@ vim.g.rustaceanvim = {
 			vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
 			vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 			vim.keymap.set('n', '<space>f', function()
-				vim.lsp.buf.format { async = true }
+				require("conform").format({ async = true, lsp_format = "fallback" })
 			end, opts)
 			vim.keymap.set('n', 'rn', LspRename, opts)
 		end,
@@ -446,6 +469,9 @@ vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end)
 vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<space>f', function()
+	require("conform").format({ async = true, lsp_format = "fallback" })
+end)
 
 -- LSP attach autocommand
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -470,7 +496,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
 		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 		vim.keymap.set('n', '<space>f', function()
-			vim.lsp.buf.format { async = true }
+			require("conform").format({ async = true, lsp_format = "fallback" })
 		end, opts)
 	end,
 })
@@ -516,7 +542,6 @@ for group, settings in pairs(highlights) do
 end
 
 -- Autocommands
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format({ async = false, timeout_ms = 2000 })]]
 vim.cmd('autocmd BufWritePre * :%s/\\s\\+$//e')
 
 -- Go organize imports
