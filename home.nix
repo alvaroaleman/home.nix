@@ -6,7 +6,8 @@
   ...
 }:
 let
-  isLinux = pkgs.stdenv.isLinux;
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
   isDesktopLinux = isLinux && config.home.username != "root";
 in
 {
@@ -45,7 +46,7 @@ in
         jujutsu
         temporal-cli
       ]
-      ++ lib.optionals (isDesktopLinux || pkgs.stdenv.isDarwin) [
+      ++ lib.optionals (isDesktopLinux || isDarwin) [
         bazelisk
         (pkgs.writeShellScriptBin "bazel" ''
           exec ${pkgs.bazelisk}/bin/bazelisk "$@"
@@ -66,7 +67,7 @@ in
         tailscale
         pi-coding-agent
       ]
-      ++ lib.optionals pkgs.stdenv.isDarwin [
+      ++ lib.optionals isDarwin [
         # GNU tools for macOS only
         coreutils
         findutils
@@ -88,7 +89,7 @@ in
     homeDirectory =
       if config.home.username == "root" then
         "/root"
-      else if pkgs.stdenv.isDarwin then
+      else if isDarwin then
         "/Users/${config.home.username}"
       else
         "/home/${config.home.username}";
@@ -230,7 +231,7 @@ in
     };
   };
 
-  services.skhd = lib.mkIf pkgs.stdenv.isDarwin {
+  services.skhd = lib.mkIf isDarwin {
     enable = true;
     package = pkgs.skhd;
     config = ./skhdrc;
@@ -247,7 +248,7 @@ in
         source = ./claude_global.md;
       };
     }
-    (lib.mkIf pkgs.stdenv.isDarwin {
+    (lib.mkIf isDarwin {
       ".config/sketchybar" = {
         source = ./sketchybar;
         recursive = true;
