@@ -204,6 +204,10 @@ in
         colorMoved = "default";
         algorithm = "histogram";
       };
+      core = {
+        fsmonitor = true;
+        untrackedCache = true;
+      };
       push = {
         autoSetupRemote = true;
       };
