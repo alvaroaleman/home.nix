@@ -134,6 +134,7 @@ in
       conform-nvim
       rustaceanvim
       (nvim-treesitter.withAllGrammars)
+      (pkgs.neovimUtils.grammarToPlugin pkgs.tree-sitter-grammars.tree-sitter-quint)
       gitsigns-nvim
       nvim-autopairs
       indent-blankline-nvim
@@ -167,6 +168,7 @@ in
       lua-language-server # lua_ls
       nixd # nixlsp
       starpls
+      (pkgs.callPackage ./packages/quint-language-server.nix { })
 
       # Formatters
       hujsonfmt

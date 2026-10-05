@@ -59,6 +59,7 @@ require("ibl").setup {}
 vim.filetype.add({
 	extension = {
 		hujson = "jsonc",
+		qnt = "quint",
 	},
 })
 
@@ -366,6 +367,10 @@ require('blink.cmp').setup({
 	},
 })
 
+vim.api.nvim_create_user_command('LspInfo', function()
+	vim.cmd('checkhealth vim.lsp')
+end, { force = true })
+
 capabilities = require('blink.cmp').get_lsp_capabilities()
 
 
@@ -425,6 +430,13 @@ vim.lsp.config('ty', {
 	capabilities = capabilities,
 })
 
+vim.lsp.config('quint', {
+	cmd = { 'quint-language-server', '--stdio' },
+	filetypes = { 'quint' },
+	root_markers = { '.git' },
+	capabilities = capabilities,
+})
+
 -- Rustaceanvim configuration
 vim.g.rustaceanvim = {
 	server = {
@@ -455,7 +467,7 @@ vim.g.rustaceanvim = {
 }
 
 local lsp_servers = { "clangd", "ty", "terraformls", "marksman", "starpls", "gopls",
-	"lua_ls", "nixd" }
+	"lua_ls", "nixd", "quint" }
 for _, server in ipairs(lsp_servers) do
 	vim.lsp.config(server, {
 		capabilities = capabilities,
