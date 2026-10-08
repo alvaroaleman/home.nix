@@ -14,6 +14,7 @@
     };
 
     nix-search-cli.url = "github:peterldowns/nix-search-cli";
+    pi.url = "github:earendil-works/pi/stable";
   };
   outputs =
     {
@@ -21,12 +22,13 @@
       home-manager,
       darwin,
       nix-search-cli,
+      pi,
       ...
     }:
     let
       # Common module args for all configurations
       commonModuleArgs = {
-        inherit nix-search-cli;
+        inherit nix-search-cli pi;
       };
 
       userList = [

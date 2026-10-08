@@ -3,6 +3,7 @@
   lib,
   pkgs,
   nix-search-cli,
+  pi,
   ...
 }:
 let
@@ -65,7 +66,7 @@ in
         kind
         podman
         tailscale
-        pi-coding-agent
+        pi.packages.${stdenv.hostPlatform.system}.default
       ]
       ++ lib.optionals isDarwin [
         # GNU tools for macOS only
