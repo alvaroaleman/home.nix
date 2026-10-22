@@ -12,6 +12,8 @@ let
   isDesktopLinux = isLinux && config.home.username != "root";
 in
 {
+  imports = [ ./pi_mcp.nix ];
+
   nixpkgs.config.allowUnfree = true;
   home = {
     packages =
@@ -243,6 +245,13 @@ in
     config = ./skhdrc;
   };
 
+  pi.mcpServers = lib.mkIf (isDesktopLinux || isDarwin) {
+    gopls = {
+      command = "${pkgs.gopls}/bin/gopls";
+      args = [ "mcp" ];
+    };
+  };
+
   home.file = lib.mkMerge [
     {
       ".claude/settings.json" = {
@@ -254,14 +263,6 @@ in
         source = ./claude_global.md;
       };
     }
-    (lib.mkIf (isDesktopLinux || isDarwin) {
-      ".pi/agent/mcp.json".text = builtins.toJSON {
-        mcpServers.gopls = {
-          command = "${pkgs.gopls}/bin/gopls";
-          args = [ "mcp" ];
-        };
-      };
-    })
     (lib.mkIf isDarwin {
       ".config/sketchybar" = {
         source = ./sketchybar;
