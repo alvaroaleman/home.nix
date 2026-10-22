@@ -52,7 +52,6 @@ in
         (pkgs.writeShellScriptBin "bazel" ''
           exec ${pkgs.bazelisk}/bin/bazelisk "$@"
         '')
-        (azure-cli.withExtensions [ azure-cli-extensions.quota ])
         awscli2
         ssm-session-manager-plugin
         pixi
