@@ -48,6 +48,7 @@ in
         grpcurl
         jujutsu
         temporal-cli
+        (pkgs.callPackage ./packages/temporal-cloud.nix { })
       ]
       ++ lib.optionals (isDesktopLinux || isDarwin) [
         bazelisk
