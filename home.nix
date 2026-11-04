@@ -14,7 +14,6 @@ in
 {
   imports = [ ./pi_mcp.nix ];
 
-  nixpkgs.config.allowUnfree = true;
   home = {
     packages =
       with pkgs;
